@@ -6,7 +6,8 @@ REST API sederhana menggunakan Cloudflare Workers, Hono, dan Cloudflare KV Stora
 
 - Operasi CRUD penuh (Create, Read, Update, Delete) untuk data di Cloudflare KV
 - Operasi CRUD khusus untuk tabel "berita" yang meniru struktur database
-- Pagination untuk daftar berita
+- Operasi CRUD khusus untuk tabel "produk" yang meniru struktur database
+- Pagination untuk daftar berita dan produk
 - Validasi input dan penanganan error
 - Middleware CORS dan logging
 - Health check endpoint
@@ -175,6 +176,25 @@ CREATE TABLE "berita" (
   "dateUpdated" datetime
 )
 ```
+
+## API Endpoints untuk Tabel "Produk"
+
+### Struktur Tabel "Produk"
+
+```sql
+CREATE TABLE "produk" (
+  "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+  "title" varchar(225),
+  "kategori" varchar,
+  "tags" varchar,
+  "headline" varchar,
+  "cover" varchar(500),
+  "content" text,
+  "compiledHash" text,
+  "compiledPath" text,
+  "dateCreated" datetime,
+  "dateUpdated" datetime
+)
 
 ### 1. Get All Berita
 
@@ -352,6 +372,183 @@ CREATE TABLE "berita" (
   }
   ```
 
+## API Endpoints untuk Tabel "Produk"
+
+### 1. Get All Produk
+
+- **URL**: `/api/produk`
+- **Method**: `GET`
+- **Response**:
+  ```json
+  {
+    "produk": [
+      {
+        "id": 1640995200000,
+        "title": "Judul Produk",
+        "kategori": "Kategori Produk",
+        "tags": "tag1,tag2",
+        "headline": "Headline produk",
+        "cover": "https://example.com/image.jpg",
+        "content": "Konten produk...",
+        "compiledHash": "hash123",
+        "compiledPath": "/path/to/compiled",
+        "dateCreated": "2022-01-01T00:00:00.000Z",
+        "dateUpdated": "2022-01-01T00:00:00.000Z"
+      }
+    ]
+  }
+  ```
+
+### 2. Get Produk dengan Pagination
+
+- **URL**: `/api/produk/pager`
+- **Method**: `GET`
+- **Query Parameters**:
+  - `page` (optional, default: 1) - Nomor halaman
+  - `limit` (optional, default: 10, max: 100) - Jumlah item per halaman
+  - `kategori` (optional) - Filter berdasarkan kategori
+- **Response**:
+  ```json
+  {
+    "produk": [
+      {
+        "id": 1640995200000,
+        "title": "Judul Produk",
+        "kategori": "Kategori Produk",
+        "tags": "tag1,tag2",
+        "headline": "Headline produk",
+        "cover": "https://example.com/image.jpg",
+        "content": "Konten produk...",
+        "compiledHash": "hash123",
+        "compiledPath": "/path/to/compiled",
+        "dateCreated": "2022-01-01T00:00:00.000Z",
+        "dateUpdated": "2022-01-01T00:00:00.000Z"
+      }
+    ],
+    "pagination": {
+      "page": 1,
+      "limit": 10,
+      "total": 100,
+      "pages": 10
+    }
+  }
+  ```
+
+### 3. Get Produk by ID
+
+- **URL**: `/api/produk/:id`
+- **Method**: `GET`
+- **Response** (jika produk ditemukan):
+  ```json
+  {
+    "produk": {
+      "id": 1640995200000,
+      "title": "Judul Produk",
+      "kategori": "Kategori Produk",
+      "tags": "tag1,tag2",
+      "headline": "Headline produk",
+      "cover": "https://example.com/image.jpg",
+      "content": "Konten produk...",
+      "compiledHash": "hash123",
+      "compiledPath": "/path/to/compiled",
+      "dateCreated": "2022-01-01T00:00:00.000Z",
+      "dateUpdated": "2022-01-01T00:00:00.000Z"
+    }
+  }
+  ```
+- **Response** (jika produk tidak ditemukan):
+  ```json
+  {
+    "error": "Produk not found"
+  }
+  ```
+
+### 4. Create Produk
+
+- **URL**: `/api/produk`
+- **Method**: `POST`
+- **Body**:
+  ```json
+  {
+    "title": "Judul Produk",
+    "kategori": "Kategori Produk",
+    "tags": "tag1,tag2",
+    "headline": "Headline produk",
+    "cover": "https://example.com/image.jpg",
+    "content": "Konten produk...",
+    "compiledHash": "hash123",
+    "compiledPath": "/path/to/compiled"
+  }
+  ```
+- **Response**:
+  ```json
+  {
+    "message": "Produk created successfully",
+    "produk": {
+      "id": 1640995200000,
+      "title": "Judul Produk",
+      "kategori": "Kategori Produk",
+      "tags": "tag1,tag2",
+      "headline": "Headline produk",
+      "cover": "https://example.com/image.jpg",
+      "content": "Konten produk...",
+      "compiledHash": "hash123",
+      "compiledPath": "/path/to/compiled",
+      "dateCreated": "2022-01-01T00:00:00.000Z",
+      "dateUpdated": "2022-01-01T00:00:00.000Z"
+    }
+  }
+  ```
+
+### 5. Update Produk
+
+- **URL**: `/api/produk/:id`
+- **Method**: `PUT`
+- **Body** (semua field opsional):
+  ```json
+  {
+    "title": "Judul Produk yang Diperbarui",
+    "kategori": "Kategori Produk Baru",
+    "tags": "tag1,tag3",
+    "headline": "Headline produk yang diperbarui",
+    "cover": "https://example.com/new-image.jpg",
+    "content": "Konten produk yang diperbarui...",
+    "compiledHash": "hash456",
+    "compiledPath": "/path/to/new-compiled"
+  }
+  ```
+- **Response**:
+  ```json
+  {
+    "message": "Produk updated successfully",
+    "produk": {
+      "id": 1640995200000,
+      "title": "Judul Produk yang Diperbarui",
+      "kategori": "Kategori Produk Baru",
+      "tags": "tag1,tag3",
+      "headline": "Headline produk yang diperbarui",
+      "cover": "https://example.com/new-image.jpg",
+      "content": "Konten produk yang diperbarui...",
+      "compiledHash": "hash456",
+      "compiledPath": "/path/to/new-compiled",
+      "dateCreated": "2022-01-01T00:00:00.000Z",
+      "dateUpdated": "2022-01-02T00:00:00.000Z"
+    }
+  }
+  ```
+
+### 6. Delete Produk
+
+- **URL**: `/api/produk/:id`
+- **Method**: `DELETE`
+- **Response**:
+  ```json
+  {
+    "message": "Produk deleted successfully",
+    "id": 1640995200000
+  }
+  ```
+
 ## Pengujian Lokal
 
 Anda dapat menggunakan curl atau alat pengujian API seperti Postman untuk menguji endpoint:
@@ -450,6 +647,60 @@ curl -X PUT http://localhost:8787/api/berita/1640995200000 \
 curl -X DELETE http://localhost:8787/api/berita/1640995200000
 ```
 
+### Menguji Endpoint Produk
+
+#### Membuat Produk
+
+```bash
+curl -X POST http://localhost:8787/api/produk \
+  -H "Content-Type: application/json" \
+  -d '{
+    "title": "Produk Terbaru",
+    "kategori": "Elektronik",
+    "tags": "produk,elektronik",
+    "headline": "Headline produk terbaru",
+    "cover": "https://example.com/cover.jpg",
+    "content": "Ini adalah konten produk terbaru...",
+    "compiledHash": "abc123",
+    "compiledPath": "/products/latest"
+  }'
+```
+
+#### Mendapatkan Semua Produk
+
+```bash
+curl http://localhost:8787/api/produk
+```
+
+#### Mendapatkan Produk dengan Pagination
+
+```bash
+curl http://localhost:8787/api/produk/pager?page=1&limit=5
+```
+
+#### Mendapatkan Produk Berdasarkan ID
+
+```bash
+curl http://localhost:8787/api/produk/1640995200000
+```
+
+#### Memperbarui Produk
+
+```bash
+curl -X PUT http://localhost:8787/api/produk/1640995200000 \
+  -H "Content-Type: application/json" \
+  -d '{
+    "title": "Produk Terbaru yang Diperbarui",
+    "content": "Ini adalah konten produk terbaru yang telah diperbarui..."
+  }'
+```
+
+#### Menghapus Produk
+
+```bash
+curl -X DELETE http://localhost:8787/api/produk/1640995200000
+```
+
 ## Deploy ke Cloudflare
 
 ```bash
@@ -462,14 +713,58 @@ pnpm run deploy
 ├── src/
 │   ├── index.ts              # File utama aplikasi
 │   ├── models/
-│   │   └── berita.ts         # Model data berita
+│   │   ├── berita.ts         # Model data berita
+│   │   └── produk.ts         # Model data produk
 │   ├── services/
 │   │   └── kvService.ts      # Service untuk operasi KV
 │   ├── controllers/
-│   │   └── beritaController.ts # Controller untuk logika berita
-│   └── routes/
-│       ├── beritaRoutes.ts   # Route untuk endpoint berita
-│       └── dataRoutes.ts     # Route untuk endpoint data umum
+│   │   ├── beritaController.ts # Controller untuk logika berita
+│   │   ├── berita/           # Fungsi controller berita
+│   │   │   ├── getAllBerita.ts
+│   │   │   ├── getBeritaWithPager.ts
+│   │   │   ├── getBeritaById.ts
+│   │   │   ├── createBerita.ts
+│   │   │   ├── updateBerita.ts
+│   │   │   └── deleteBerita.ts
+│   │   ├── produkController.ts # Controller untuk logika produk
+│   │   └── produk/           # Fungsi controller produk
+│   │       ├── getAllProduk.ts
+│   │       ├── getProdukWithPager.ts
+│   │       ├── getProdukById.ts
+│   │       ├── createProduk.ts
+│   │       ├── updateProduk.ts
+│   │       └── deleteProduk.ts
+│   ├── handlers/
+│   │   ├── berita/           # Handler untuk endpoint berita
+│   │   │   ├── getAllBeritaHandler.ts
+│   │   │   ├── getBeritaWithPagerHandler.ts
+│   │   │   ├── getBeritaByIdHandler.ts
+│   │   │   ├── createBeritaHandler.ts
+│   │   │   ├── updateBeritaHandler.ts
+│   │   │   ├── deleteBeritaHandler.ts
+│   │   │   └── validator.ts
+│   │   └── produk/           # Handler untuk endpoint produk
+│   │       ├── getAllProdukHandler.ts
+│   │       ├── getProdukWithPagerHandler.ts
+│   │       ├── getProdukByIdHandler.ts
+│   │       ├── createProdukHandler.ts
+│   │       ├── updateProdukHandler.ts
+│   │       ├── deleteProdukHandler.ts
+│   │       └── validator.ts
+│   ├── routes/
+│   │   ├── beritaRoutes.ts   # Route untuk endpoint berita
+│   │   ├── produkRoutes.ts   # Route untuk endpoint produk
+│   │   └── dataRoutes.ts     # Route untuk endpoint data umum
+│   ├── utils/
+│   │   └── controllerFactory.ts # Factory untuk membuat controller
+│   └── scripts/
+│       ├── seedBerita.js     # Script untuk seeding data berita
+│       ├── seedProduk.js     # Script untuk seeding data produk
+│       ├── clearBerita.js    # Script untuk menghapus data berita
+│       └── clearProduk.js    # Script untuk menghapus data produk
+├── seeds/
+│   ├── berita.jsonl          # Data seed untuk berita
+│   └── produk.jsonl          # Data seed untuk produk
 ├── wrangler.toml             # Konfigurasi Cloudflare Workers
 ├── tsconfig.json             # Konfigurasi TypeScript
 ├── package.json              # Dependensi dan script

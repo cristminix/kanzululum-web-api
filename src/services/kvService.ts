@@ -59,4 +59,26 @@ export class KVService {
   async deleteBerita(id: number): Promise<void> {
     await this.delete(`berita_${id}`)
   }
+
+  // Operasi khusus untuk produk
+  async getAllProdukKeys(): Promise<number[]> {
+    const produkKeys = await this.get("produk_keys")
+    return produkKeys ? JSON.parse(produkKeys) : []
+  }
+
+  async saveProdukKeys(keys: number[]): Promise<void> {
+    await this.put("produk_keys", JSON.stringify(keys))
+  }
+
+  async getProduk(id: number): Promise<string | null> {
+    return await this.get(`produk_${id}`)
+  }
+
+  async saveProduk(id: number, produkStr: string): Promise<void> {
+    await this.put(`produk_${id}`, produkStr)
+  }
+
+  async deleteProduk(id: number): Promise<void> {
+    await this.delete(`produk_${id}`)
+  }
 }
