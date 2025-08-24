@@ -1,0 +1,47 @@
+# Dependensi
+node_modules/
+
+# File environment
+.env
+.env.local
+.env.*.local
+
+# Build output
+dist/
+build/
+out/
+
+# Log file
+*.log
+
+# File sistem operasi
+.DS_Store
+Thumbs.db
+
+# File editor
+.vscode/
+.idea/
+
+# TypeScript build output
+*.js
+*.d.ts
+tsconfig.tsbuildinfo
+
+# Cloudflare Wrangler
+.wrangler/
+worker.js
+worker.js.map
+
+# File hasil build lainnya
+*.min.js
+*.min.css
+
+# File temporary
+tmp/
+temp/
+
+# File konfigurasi lokal
+config.local.json
+
+# File hasil ekspor data
+seeds/*.jsonl

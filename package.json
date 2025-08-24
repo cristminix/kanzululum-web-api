@@ -1,0 +1,30 @@
+{
+  "name": "cloudflare-kv-rest-api",
+  "version": "1.0.0",
+  "description": "Simple REST API using Cloudflare KV storage with Hono and TypeScript",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "wrangler dev src/index.ts",
+    "deploy": "wrangler deploy --minify src/index.ts"
+  },
+  "keywords": [
+    "cloudflare",
+    "workers",
+    "hono",
+    "kv",
+    "rest-api",
+    "typescript"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "hono": "^4.0.0"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.0.0",
+    "@types/node": "^24.3.0",
+    "typescript": "^5.0.0",
+    "wrangler": "^3.0.0"
+  }
+}
