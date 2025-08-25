@@ -13,12 +13,12 @@ export async function createBerita(
 
     // Validasi field yang diperlukan
     if (data.cover) {
-      try {
-        new URL(data.cover)
-      } catch (e) {
-        console.log("Invalid cover URL:", data.cover)
-        throw new Error("Cover must be a valid URL")
-      }
+      // try {
+      //   new URL(data.cover)
+      // } catch (e) {
+      //   console.log("Invalid cover URL:", data.cover)
+      //   throw new Error("Cover must be a valid URL")
+      // }
     }
 
     if (data.cover && data.cover.length > 500) {

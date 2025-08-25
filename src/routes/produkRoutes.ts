@@ -22,7 +22,7 @@ produkRoutes.get("/produk/pager", getProdukWithPagerHandler)
 
 // GET /api/produk/:id - Mendapatkan produk berdasarkan ID
 produkRoutes.get("/produk/:id", getProdukByIdHandler)
-
+/*
 // POST /api/produk - Membuat produk baru
 produkRoutes.post(
   "/produk",
@@ -39,3 +39,4 @@ produkRoutes.put(
 
 // DELETE /api/produk/:id - Menghapus produk
 produkRoutes.delete("/produk/:id", deleteProdukHandler)
+*/

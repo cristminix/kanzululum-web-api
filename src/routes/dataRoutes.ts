@@ -9,7 +9,7 @@ export const dataRoutes = new Hono<{ Bindings: { KV: KVNamespace } }>()
 const createKVService = (kv: KVNamespace) => {
   return new KVService(kv)
 }
-
+/*
 // GET /api/keys - Mendapatkan semua keys
 dataRoutes.get("/keys", async (c) => {
   try {
@@ -136,3 +136,4 @@ dataRoutes.delete("/data/:key", async (c) => {
     return c.json({ error: "Failed to delete data" }, 500)
   }
 })
+*/
