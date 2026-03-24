@@ -289,13 +289,26 @@ export class KVService {
     await this.delete(`biaya_pendaftaran_${id}`)
   }
 
-  // Operasi khusus untuk profile (single entity)
-  async getProfile(): Promise<string | null> {
-    return await this.get("profile")
+  // Operasi khusus untuk profile (multi entity)
+  async getAllProfileKeys(): Promise<number[]> {
+    const profileKeys = await this.get("profile_keys")
+    return profileKeys ? JSON.parse(profileKeys) : []
   }
 
-  async saveProfile(profileStr: string): Promise<void> {
-    await this.put("profile", profileStr)
+  async saveProfileKeys(keys: number[]): Promise<void> {
+    await this.put("profile_keys", JSON.stringify(keys))
+  }
+
+  async getProfile(id: number): Promise<string | null> {
+    return await this.get(`profile_${id}`)
+  }
+
+  async saveProfile(id: number, profileStr: string): Promise<void> {
+    await this.put(`profile_${id}`, profileStr)
+  }
+
+  async deleteProfile(id: number): Promise<void> {
+    await this.delete(`profile_${id}`)
   }
 
   // Operasi khusus untuk social network links

@@ -8,10 +8,14 @@ export interface ProfileContent {
 }
 
 export interface Profile {
+  id?: number
   heading?: string
   title?: string
   image?: string
+  imageUrl?: string
   kind?: string
   contents?: ProfileContent[]
   linkText?: string
+  dateCreated?: string
+  dateUpdated?: string
 }
