@@ -166,13 +166,26 @@ export class KVService {
     await this.delete(`galery_${id}`)
   }
 
-  // Operasi khusus untuk hero (single entity)
-  async getHero(): Promise<string | null> {
-    return await this.get("hero")
+  // Operasi khusus untuk hero (multi entity)
+  async getAllHeroKeys(): Promise<number[]> {
+    const heroKeys = await this.get("hero_keys")
+    return heroKeys ? JSON.parse(heroKeys) : []
   }
 
-  async saveHero(heroStr: string): Promise<void> {
-    await this.put("hero", heroStr)
+  async saveHeroKeys(keys: number[]): Promise<void> {
+    await this.put("hero_keys", JSON.stringify(keys))
+  }
+
+  async getHeroById(id: number): Promise<string | null> {
+    return await this.get(`hero_${id}`)
+  }
+
+  async saveHeroById(id: number, heroStr: string): Promise<void> {
+    await this.put(`hero_${id}`, heroStr)
+  }
+
+  async deleteHeroById(id: number): Promise<void> {
+    await this.delete(`hero_${id}`)
   }
 
   // Operasi khusus untuk kegiatan

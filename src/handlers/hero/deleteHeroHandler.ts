@@ -1,12 +1,11 @@
 import { Context } from "hono"
 import { createHeroController } from "../../utils/controllerFactory"
 
-export const updateHeroHandler = async (c: Context) => {
+export const deleteHeroHandler = async (c: Context) => {
   try {
     const id = parseInt(c.req.param("id"))
-    const data = await c.req.json()
     const controller = createHeroController(c.env.KV)
-    const result = await controller.updateHero(id, data)
+    const result = await controller.deleteHero(id)
 
     if (!result) {
       return c.json({ error: "Hero not found" }, 404)
@@ -17,6 +16,6 @@ export const updateHeroHandler = async (c: Context) => {
     if (error instanceof Error && error.message === "Invalid ID") {
       return c.json({ error: error.message }, 400)
     }
-    return c.json({ error: "Failed to update hero" }, 500)
+    return c.json({ error: "Failed to delete hero" }, 500)
   }
 }

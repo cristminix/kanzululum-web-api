@@ -16,4 +16,6 @@ export interface Hero {
   imageUrl?: string
   linkText?: string
   link?: string
+  dateCreated?: string
+  dateUpdated?: string
 }
