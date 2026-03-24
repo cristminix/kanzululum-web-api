@@ -1,0 +1,51 @@
+[
+	{
+		"id": 1,
+		"slug": "",
+		"title": [
+			{
+				"id": "jlFnWvZPxw",
+				"type": "paragraph",
+				"data": {
+					"text": "Pilihan pendidikan <br /> Yang Tepat"
+				}
+			}
+		],
+		"description": [
+			{
+				"id": "jlFnWvZPxw",
+				"type": "paragraph",
+				"data": {
+					"text": "Merencanakan pendidikan yang berkualitas? Kami akan mengatur pengalaman belajar Anda di pondok pesantren terbaik dengan fasilitas unggulan dan biaya yang terjangkau!"
+				}
+			}
+		],
+		"image": "/assets/images/homepage-slide/slide-2.jpg",
+		"linkText": "Selengkapnya",
+		"link": "#"
+	},
+	{
+		"id": 1,
+		"title": [
+			{
+				"id": "jlFnWvZPxw",
+				"type": "paragraph",
+				"data": {
+					"text": "Temukan <br /> Guru dan Pengajar Terbaik"
+				}
+			}
+		],
+		"description": [
+			{
+				"id": "jlFnWvZPxw",
+				"type": "paragraph",
+				"data": {
+					"text": "Berencana memondokkan buah hati? Kami siap membantu anda, kami menyiapkan guru dan pengajar yang mumpuni dalam menunjang pendidikan dan akhlak buah hati anda!"
+				}
+			}
+		],
+		"image": "/assets/images/homepage-slide/slide-1.jpg",
+		"linkText": "Selengkapnya",
+		"link": "#"
+	}
+]

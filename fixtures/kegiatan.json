@@ -1,0 +1,57 @@
+[
+	{
+		"id": "1.",
+		"waktu": "3:30",
+		"kegiatan": "Bangun tidur"
+	},
+	{
+		"id": "2.",
+		"waktu": "4:00",
+		"kegiatan": "Shlat tahajjud, Adzan shubuh, Pembacaan do’a fajar, Jama’ah shubuh, Pembacaan Ratibul attas dan kuliah subuh (di Aula)"
+	},
+	{
+		"id": "3.",
+		"waktu": "8:00",
+		"kegiatan": "Sholat dhuha, Pembacaandzikir (di Aula)"
+	},
+	{
+		"id": "4.",
+		"waktu": "8:15",
+		"kegiatan": "Masuk Kelas"
+	},
+	{
+		"id": "5.",
+		"waktu": "12:30",
+		"kegiatan": "Persiapan sholat dzuhur, pembacaan Al-qur’an, Sholat qobliyah, Dzuhur, Ba’diyyah"
+	},
+	{
+		"id": "6.",
+		"waktu": "13:00 – 15:00",
+		"kegiatan": "Makan siang dan istirahat"
+	},
+	{
+		"id": "7.",
+		"waktu": "15:00",
+		"kegiatan": "Persiapan sholah ashar"
+	},
+	{
+		"id": "8.",
+		"waktu": "16:00 – 17:00",
+		"kegiatan": "Tasmi Mahfudzot: Juz amma, Aqidatul awam, Hadits (Arbain dll), lughotul Arobiyyah, Jurmiyah, Amrithi, Zubad, Alfiyah,dll"
+	},
+	{
+		"id": "9.",
+		"waktu": "17:30",
+		"kegiatan": "Pembacaan wirid lathif, Jama’ah maghrib, pembacaan Ratib Haddad dan Halaqoh"
+	},
+	{
+		"id": "10.",
+		"waktu": "20:30",
+		"kegiatan": "Syawir, Sorogan, Pelajaran idhofy, Senin; pembacaan Maulid, Rabu; Tauiyyah, Kamis; Khitobah, Malam Ahad Pahing; pembacaan Burdah dan Taushiyyah"
+	},
+	{
+		"id": "11.",
+		"waktu": "22:00",
+		"kegiatan": "Tidur"
+	}
+]

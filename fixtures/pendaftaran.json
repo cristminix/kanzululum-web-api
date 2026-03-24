@@ -1,0 +1,64 @@
+{
+	"banner": {
+		"title": "Pendaftaran Pondok Pesantren Kanzululum",
+		"image": "/assets/images/banner/pendaftaran-banner.jpg"
+	},
+	"syarat-utama": [
+		{
+			"id": 1,
+			"content": "Sanggup mentaati segala peraturan dan tata tertib pesantren dengan surat pernyataan dan perjanjian."
+		},
+		{
+			"id": 2,
+			"content": "Sanggup tidak pulang, terkecuali ada kebutuhan atau udzur tertentu yang tidak dapat ditolelir  perizinan khusus."
+		},
+		{
+			"id": 3,
+			"content": "santri diantar langsung oleh orang tua/wali ketika melakukan daftar ulang."
+		}
+	],
+	"syarat-administrasi": [
+		{
+			"id": 2,
+			"category-slug": "administrasi",
+			"content": "Mengisi formulir pendaftaran"
+		},
+		{
+			"id": 3,
+			"content": "Menyerahkan foto copy surat kelahiran / akta"
+		},
+		{
+			"id": 4,
+			"content": "Menyerahkan foto copy ijazah"
+		},
+		{
+			"id": 5,
+			"content": "Membawa foto copy KTP dan KK (kartu keluarga)  orang tua/wali"
+		},
+		{
+			"id": 6,
+			"content": "Membayar seluruh administrasi pendaftaran yang telah ditetapkan pihak pesantren."
+		}
+	],
+	"biaya-pendaftaran": [
+		{
+			"id": 1,
+			"category-slug": "main",
+			"legend": "Biaya awal pendaftaran",
+			"keterangan": "Biaya formulir pendaftaran",
+			"biaya": "200000"
+		},
+		{
+			"id": 2,
+			"legend": "",
+			"keterangan": "Syahriyah Ponpes dan Pendidikan Kesetaraan (Bulanan) untuk satu bulan",
+			"biaya": "500000"
+		},
+		{
+			"id": 3,
+			"legend": "",
+			"keterangan": "Infaq Pembangunan",
+			"biaya": "1000000"
+		}
+	]
+}

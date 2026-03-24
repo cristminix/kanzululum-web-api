@@ -1,0 +1,37 @@
+[
+    {
+        "slug": "kontak",
+        "title": "Kontak Pondok Pesantren Kanzululum",
+        "image": "kontak-banner.jpg"
+    },
+    {
+        "slug": "galery",
+        "title": "Galeri Pondok Pesantren Kanzululum",
+        "image": "galery-banner.jpg"
+    },
+    {
+        "slug": "lembaga",
+        "title": "Lembaga Pondok Pesantren Kanzululum",
+        "image": "lembaga-banner.jpg"
+    },
+    {
+        "slug": "pendaftaran",
+        "title": "Pendaftaran Pondok Pesantren Kanzululum",
+        "image": "pendaftaran-banner.jpg"
+    },
+    {
+        "slug": "produk",
+        "title": "Produk Pondok Pesantren Kanzululum",
+        "image": "produk-banner.jpg"
+    },
+    {
+        "slug": "profile",
+        "title": "Profil Pondok Pesantren Kanzululum",
+        "image": "profile-banner.jpg"
+    },
+    {
+        "slug": "berita",
+        "title": "Berita Pondok Pesantren Kanzululum",
+        "image": "berita-banner.jpg"
+    }
+]

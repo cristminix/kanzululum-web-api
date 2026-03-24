@@ -1,0 +1,40 @@
+[
+	{
+		"title": "Home",
+		"path": "/"
+	},
+	{
+		"title": "Profile",
+		"path": "/profile",
+		"children":[
+			{
+				"title": "Lembaga",
+				"path": "/lembaga"
+			}
+		]
+	},
+	{
+		"title": "Produk",
+		"path": "/produk"
+	},
+	{
+		"title": "Kegiatan",
+		"path": "/kegiatan"
+	},
+	{
+		"title": "Pendaftaran",
+		"path": "/pendaftaran"
+	},
+	{
+		"title": "Galeri",
+		"path": "/galeri"
+	},
+	{
+		"title": "Berita",
+		"path": "/berita"
+	},
+	{
+		"title": "Kontak",
+		"path": "/kontak"
+	}
+]

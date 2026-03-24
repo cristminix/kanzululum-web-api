@@ -1,0 +1,20 @@
+[
+	{
+		"id": 1,
+		"name": "Taman Pendidikan Qur’an Kanzul Ulum",
+		"image": "/assets/images/lembaga/lb-tpq-sm.png",
+		"description": "Taman Pendidikan Al-Qur'an  merupakan lembaga pendidikan nonformal jenis keagamaan Islam yang bertujuan untuk memberikan pengajaran membaca Al-Qur'an sejak usia dini, serta memahami dasar-dasar dinul Islam pada anak usia taman kanak-kanak. TPA/TPQ setara dengan Raudhatul Athfal RA dan taman kanak-kanak (TK), di mana kurikulumnya ditekankan pada pemberian dasar-dasar membaca Al-Qur'an serta membantu pertumbuhan dan perkembangan rohani anak agar memiliki kesiapan dalam memasuki pendidikan lebih lanjut."
+	},
+	{
+		"id": 2,
+		"name": "Madrasah Diniyah Ta’miliyah Awaliyah Kanzul Ulum",
+		"description": "Madrasah Diniyah Takmiliyah Awaliyah (MDTA) adalah satuan pendidikan keagamaan Islam bersifat non formal yang menyelenggarakan pendidikan tingkat dasar (SD/MI) dengan pendidikan agama Islam yang meliputi AlQur’an, Hadits, Tajwid, Aqidah, Akhlaq, Fiqih, Sejarah dan Kebudayaan Islam, Bahasa Arab dan Praktek Ibadah untuk memenuhi kebutuhan masyarakat akan tambahan pendidikan agama Islam terutama bagi siswa yang belajar di sekolah dasar (SD) atau pendidikan sederajat.",
+		"image": "/assets/images/lembaga/lb-dta-sm.png"
+	},
+	{
+		"id": 3,
+		"name": "Majllis Ta’lim Kanzul Ulum",
+		"description": "Majelis taklim adalah salah satu lembaga pendidikan keagamaan nonformal yang bertujuan meningkatkan keimanan dan ketakwaan kepada Allah SWT. Proses pembelajaran di dalamnya mengarah kepada pembentukan akhlak mulia bagi jamaahnya, serta mewujudkan rahmat bagi alam semesta, merupakan tempat pangajaran atau pendidikan agama Islam yang paling fleksibel dan tidak terikat oleh waktu. Sifatnya terbuka. Usia berapa pun, profesi apa pun, suku apa pun, dapat bergabung di dalamnya. Waktu penyelenggaraannya pun tidak terikat, bisa pagi, siang, sore, atau malam. Lokasi taklim pun bisa dilakukan di dalam maupun di luar ruangan.",
+		"image": "/assets/images/lembaga/lb-mta-sm.png"
+	}
+]
