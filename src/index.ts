@@ -9,6 +9,7 @@ import { contactPersonRoutes } from "./routes/contactPersonRoutes"
 import { bannerRoutes } from "./routes/bannerRoutes"
 import { galeryRoutes } from "./routes/galeryRoutes"
 import { heroRoutes } from "./routes/heroRoutes"
+import { kegiatanRoutes } from "./routes/kegiatanRoutes"
 
 // Inisialisasi aplikasi Hono
 const app = new Hono<{ Bindings: { KV: KVNamespace } }>()
@@ -45,6 +46,7 @@ app.route("/api", contactPersonRoutes)
 app.route("/api", bannerRoutes)
 app.route("/api", galeryRoutes)
 app.route("/api", heroRoutes)
+app.route("/api", kegiatanRoutes)
 
 // Error handling middleware
 app.onError((err, c) => {

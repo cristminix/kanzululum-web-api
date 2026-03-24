@@ -161,4 +161,26 @@ export class KVService {
   async saveHero(heroStr: string): Promise<void> {
     await this.put("hero", heroStr)
   }
+
+  // Operasi khusus untuk kegiatan
+  async getAllKegiatanKeys(): Promise<string[]> {
+    const kegiatanKeys = await this.get("kegiatan_keys")
+    return kegiatanKeys ? JSON.parse(kegiatanKeys) : []
+  }
+
+  async saveKegiatanKeys(keys: string[]): Promise<void> {
+    await this.put("kegiatan_keys", JSON.stringify(keys))
+  }
+
+  async getKegiatan(id: string): Promise<string | null> {
+    return await this.get(`kegiatan_${id}`)
+  }
+
+  async saveKegiatan(id: string, kegiatanStr: string): Promise<void> {
+    await this.put(`kegiatan_${id}`, kegiatanStr)
+  }
+
+  async deleteKegiatan(id: string): Promise<void> {
+    await this.delete(`kegiatan_${id}`)
+  }
 }
