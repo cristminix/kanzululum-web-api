@@ -5,4 +5,7 @@ export interface Galery {
   slug?: string
   description?: string
   image?: string
+  imageUrl?: string
+  dateCreated?: string
+  dateUpdated?: string
 }

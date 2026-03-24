@@ -9,7 +9,11 @@ export async function getAllGalery(kvService: KVService): Promise<{ galery: Gale
     for (const id of keys) {
       const galeryStr = await kvService.getGalery(id)
       if (galeryStr) {
-        galeryItems.push(JSON.parse(galeryStr) as Galery)
+        const galery = JSON.parse(galeryStr) as Galery
+        if (galery.image) {
+          galery.imageUrl = `/api/files/${galery.image}?preview=true`
+        }
+        galeryItems.push(galery)
       }
     }
 

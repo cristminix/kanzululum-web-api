@@ -13,6 +13,8 @@ export async function createGalery(
       slug: data.slug,
       description: data.description,
       image: data.image,
+      dateCreated: new Date().toISOString(),
+      dateUpdated: new Date().toISOString(),
     }
 
     await kvService.saveGalery(id, JSON.stringify(galery))

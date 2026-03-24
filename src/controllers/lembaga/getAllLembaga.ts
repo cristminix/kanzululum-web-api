@@ -10,6 +10,9 @@ export async function getAllLembaga(kvService: KVService): Promise<{ lembaga: Le
       const lembagaStr = await kvService.getLembaga(key)
       if (lembagaStr) {
         const lembaga = JSON.parse(lembagaStr) as Lembaga
+        if (lembaga.image) {
+          lembaga.imageUrl = `/api/files/${lembaga.image}?preview=true`
+        }
         lembagaList.push(lembaga)
       }
     }

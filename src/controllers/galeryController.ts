@@ -1,6 +1,7 @@
 import { Galery } from "../models/galery"
 import { KVService } from "../services/kvService"
 import { getAllGalery } from "./galery/getAllGalery"
+import { getGaleryWithPager } from "./galery/getGaleryWithPager"
 import { getGaleryById } from "./galery/getGaleryById"
 import { createGalery } from "./galery/createGalery"
 import { updateGalery } from "./galery/updateGalery"
@@ -16,6 +17,11 @@ export class GaleryController {
   // GET /api/galery - Mendapatkan semua galery
   async getAllGalery(): Promise<{ galery: Galery[] }> {
     return getAllGalery(this.kvService)
+  }
+
+  // GET /api/galery/pager - Mendapatkan galery dengan pagination
+  async getGaleryWithPager(page: number, limit: number): Promise<any> {
+    return getGaleryWithPager(this.kvService, page, limit)
   }
 
   // GET /api/galery/:id - Mendapatkan galery berdasarkan ID
