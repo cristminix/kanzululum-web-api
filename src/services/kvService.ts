@@ -122,13 +122,26 @@ export class KVService {
     await this.put("contact_person", contactPersonStr)
   }
 
-  // Operasi khusus untuk banner (single entity)
-  async getBanner(): Promise<string | null> {
-    return await this.get("banner")
+  // Operasi khusus untuk banner (multi entity)
+  async getAllBannerKeys(): Promise<number[]> {
+    const bannerKeys = await this.get("banner_keys")
+    return bannerKeys ? JSON.parse(bannerKeys) : []
   }
 
-  async saveBanner(bannerStr: string): Promise<void> {
-    await this.put("banner", bannerStr)
+  async saveBannerKeys(keys: number[]): Promise<void> {
+    await this.put("banner_keys", JSON.stringify(keys))
+  }
+
+  async getBannerById(id: number): Promise<string | null> {
+    return await this.get(`banner_${id}`)
+  }
+
+  async saveBannerById(id: number, bannerStr: string): Promise<void> {
+    await this.put(`banner_${id}`, bannerStr)
+  }
+
+  async deleteBannerById(id: number): Promise<void> {
+    await this.delete(`banner_${id}`)
   }
 
   // Operasi khusus untuk galery

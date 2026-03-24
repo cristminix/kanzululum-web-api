@@ -13,6 +13,7 @@ export interface Hero {
   title?: HeroBlock[]
   description?: HeroBlock[]
   image?: string
+  imageUrl?: string
   linkText?: string
   link?: string
 }

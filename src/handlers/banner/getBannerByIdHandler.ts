@@ -1,22 +1,21 @@
 import { Context } from "hono"
 import { createBannerController } from "../../utils/controllerFactory"
 
-export const updateBannerHandler = async (c: Context) => {
+export const getBannerByIdHandler = async (c: Context) => {
   try {
     const id = parseInt(c.req.param("id"))
-    const data = await c.req.json()
     const controller = createBannerController(c.env.KV)
-    const result = await controller.updateBanner(id, data)
+    const banner = await controller.getBannerById(id)
 
-    if (!result) {
+    if (!banner) {
       return c.json({ error: "Banner not found" }, 404)
     }
 
-    return c.json(result)
+    return c.json({ banner })
   } catch (error) {
     if (error instanceof Error && error.message === "Invalid ID") {
       return c.json({ error: error.message }, 400)
     }
-    return c.json({ error: "Failed to update banner" }, 500)
+    return c.json({ error: "Failed to retrieve banner" }, 500)
   }
 }
