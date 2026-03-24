@@ -1,10 +1,5 @@
-{
-  "banner": {
-    "title": "Profil Pondok Pesantren Kanzululum",
-    "image": "/assets/images/banner/profile-banner.jpg",
-    "id": "df5f318b"
-  },
-  "short": {
+[
+  {
     "heading": "Pondok Pesantren",
     "title": "Kanzululum",
     "image": "/assets/images/profile/about.png",
@@ -27,7 +22,8 @@
     ],
     "linkText": "Selengkapnya"
   },
-  "full": {
+  {
+    "kind": "full",
     "heading": "Pondok Pesantren",
     "title": "Kanzululum",
     "image": "/assets/images/profile/about.png",
@@ -81,7 +77,6 @@
           "text": "Dengan berbagai kontribusinya di bidang pendidikan dan keagamaan, Tosuerdi terus berusaha untuk memberikan yang terbaik bagi masyarakat dan lingkungannya. Semangat belajar yang tinggi dan dedikasinya dalam mengabdi membuatnya menjadi teladan bagi banyak orang."
         }
       }
-    ],
-    "id": "1c75660d"
+    ]
   }
-}
+]

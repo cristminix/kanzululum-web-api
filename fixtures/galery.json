@@ -1,100 +1,93 @@
-{
-  "banner": {
-    "title": "Galeri Pondok Pesantren Kanzululum",
-    "image": "/assets/images/banner/galery-banner.jpg",
-    "id": "bfcfc73c"
+[
+  {
+    "title": "galery-item-00",
+    "slug": "",
+    "description": "Description of item galery-item-00",
+    "image": "galery-item-00.jpg"
   },
-  "contents": [
-    {
-      "title": "galery-item-00",
-      "slug": "",
-      "description": "Description of item galery-item-00",
-      "image": "/assets/images/galery/croped/galery-item-00.jpg"
-    },
-    {
-      "title": "galery-item-01",
-      "description": "Description of item galery-item-01",
-      "image": "/assets/images/galery/croped/galery-item-01.jpg"
-    },
-    {
-      "title": "galery-item-02",
-      "description": "Description of item galery-item-02",
-      "image": "/assets/images/galery/croped/galery-item-02.jpg"
-    },
-    {
-      "title": "galery-item-03",
-      "description": "Description of item galery-item-03",
-      "image": "/assets/images/galery/croped/galery-item-03.jpg"
-    },
-    {
-      "title": "galery-item-04",
-      "description": "Description of item galery-item-04",
-      "image": "/assets/images/galery/croped/galery-item-04.jpg"
-    },
-    {
-      "title": "galery-item-05",
-      "description": "Description of item galery-item-05",
-      "image": "/assets/images/galery/croped/galery-item-05.jpg"
-    },
-    {
-      "title": "galery-item-06",
-      "description": "Description of item galery-item-06",
-      "image": "/assets/images/galery/croped/galery-item-06.jpg"
-    },
-    {
-      "title": "galery-item-07",
-      "description": "Description of item galery-item-07",
-      "image": "/assets/images/galery/croped/galery-item-07.jpg"
-    },
-    {
-      "title": "galery-item-08",
-      "description": "Description of item galery-item-08",
-      "image": "/assets/images/galery/croped/galery-item-08.jpg"
-    },
-    {
-      "title": "galery-item-09",
-      "description": "Description of item galery-item-09",
-      "image": "/assets/images/galery/croped/galery-item-09.jpg"
-    },
-    {
-      "title": "galery-item-10",
-      "description": "Description of item galery-item-10",
-      "image": "/assets/images/galery/croped/galery-item-10.jpg"
-    },
-    {
-      "title": "galery-item-11",
-      "description": "Description of item galery-item-11",
-      "image": "/assets/images/galery/croped/galery-item-11.jpg"
-    },
-    {
-      "title": "galery-item-12",
-      "description": "Description of item galery-item-12",
-      "image": "/assets/images/galery/croped/galery-item-12.jpg"
-    },
-    {
-      "title": "galery-item-13",
-      "description": "Description of item galery-item-13",
-      "image": "/assets/images/galery/croped/galery-item-13.jpg"
-    },
-    {
-      "title": "galery-item-14",
-      "description": "Description of item galery-item-14",
-      "image": "/assets/images/galery/croped/galery-item-14.jpg"
-    },
-    {
-      "title": "galery-item-15",
-      "description": "Description of item galery-item-15",
-      "image": "/assets/images/galery/croped/galery-item-15.jpg"
-    },
-    {
-      "title": "galery-item-16",
-      "description": "Description of item galery-item-16",
-      "image": "/assets/images/galery/croped/galery-item-16.jpg"
-    },
-    {
-      "title": "galery-item-17",
-      "description": "Description of item galery-item-17",
-      "image": "/assets/images/galery/croped/galery-item-17.jpg"
-    }
-  ]
-}
+  {
+    "title": "galery-item-01",
+    "description": "Description of item galery-item-01",
+    "image": "galery-item-01.jpg"
+  },
+  {
+    "title": "galery-item-02",
+    "description": "Description of item galery-item-02",
+    "image": "galery-item-02.jpg"
+  },
+  {
+    "title": "galery-item-03",
+    "description": "Description of item galery-item-03",
+    "image": "galery-item-03.jpg"
+  },
+  {
+    "title": "galery-item-04",
+    "description": "Description of item galery-item-04",
+    "image": "galery-item-04.jpg"
+  },
+  {
+    "title": "galery-item-05",
+    "description": "Description of item galery-item-05",
+    "image": "galery-item-05.jpg"
+  },
+  {
+    "title": "galery-item-06",
+    "description": "Description of item galery-item-06",
+    "image": "galery-item-06.jpg"
+  },
+  {
+    "title": "galery-item-07",
+    "description": "Description of item galery-item-07",
+    "image": "galery-item-07.jpg"
+  },
+  {
+    "title": "galery-item-08",
+    "description": "Description of item galery-item-08",
+    "image": "galery-item-08.jpg"
+  },
+  {
+    "title": "galery-item-09",
+    "description": "Description of item galery-item-09",
+    "image": "galery-item-09.jpg"
+  },
+  {
+    "title": "galery-item-10",
+    "description": "Description of item galery-item-10",
+    "image": "galery-item-10.jpg"
+  },
+  {
+    "title": "galery-item-11",
+    "description": "Description of item galery-item-11",
+    "image": "galery-item-11.jpg"
+  },
+  {
+    "title": "galery-item-12",
+    "description": "Description of item galery-item-12",
+    "image": "galery-item-12.jpg"
+  },
+  {
+    "title": "galery-item-13",
+    "description": "Description of item galery-item-13",
+    "image": "galery-item-13.jpg"
+  },
+  {
+    "title": "galery-item-14",
+    "description": "Description of item galery-item-14",
+    "image": "galery-item-14.jpg"
+  },
+  {
+    "title": "galery-item-15",
+    "description": "Description of item galery-item-15",
+    "image": "galery-item-15.jpg"
+  },
+  {
+    "title": "galery-item-16",
+    "description": "Description of item galery-item-16",
+    "image": "galery-item-16.jpg"
+  },
+  {
+    "title": "galery-item-17",
+    "description": "Description of item galery-item-17",
+    "image": "galery-item-17.jpg"
+  }
+]

@@ -1,8 +1,132 @@
-{
-	"banner":{
-		"title":"Produk Pondok Pesantren Kanzululum",
-		"image":"/assets/images/banner/produk-banner.jpg"
+[
+	{
+		"id": 1756118628316,
+		"title": "Souvenir Kulit",
+		"kategori": "Kerajinan Tangan",
+		"tags": "Kerajinan Tangan",
+		"headline": "Contoh kerajinan lokal nusantara yang sudah diakui hingga hingga Eropa adalah produk souvenir kulit. Umumnya, kerajinan kulit ini diproduksi menggunakan kulit sapi, domba, ataupun buaya. ",
+		"cover": "Souvenir-Kulit-scaled.jpg",
+		"content": "[{\"id\":\"_tfU7ZPwmg\",\"type\":\"paragraph\",\"data\":{\"text\":\"Contoh kerajinan lokal nusantara yang sudah diakui hingga hingga Eropa adalah produk \u003Ci\u003Esouvenir \u003C/i\u003Ekulit. Umumnya, kerajinan kulit ini diproduksi menggunakan kulit sapi, domba, ataupun buaya.\"}},{\"id\":\"gYRqPXYoSG\",\"type\":\"paragraph\",\"data\":{\"text\":\"Berbagai sentra produksi kulit yang terkenal di Pulau Jawa seperti Bogor, Garut, dan Magetan. Ada banyak produk kulit yang \u003Ci\u003Eready to wear\u003C/i\u003E mulai dari tas, jaket, sepatu, dan lainnya.\"}},{\"id\":\"TqClbRjVZ9\",\"type\":\"paragraph\",\"data\":{\"text\":\"Kerajinan kulit ini ada yang dibuat menggunakan mesin dan ada yang tanpa mesin atau \u003Ci\u003Ehandmade\u003C/i\u003E. Untuk harganya pun bervariasi berkisar dari puluhan ribu sampai jutaan rupiah tergantung jenis model yang kamu pilih.\"}}]",
+		"compiledHash": "1bcdd94f950f0874de0f1c212c51751768f30d4a33e5c214b94518704ad8f32a",
+		"compiledPath": "",
+		"dateCreated": "2025-08-25T10:43:48.316Z",
+		"dateUpdated": "2025-08-25T10:43:48.316Z"
 	},
-
-	"contents":[]
-}
+	{
+		"id": 1756118629690,
+		"title": "Gerabah",
+		"kategori": "Gerabah",
+		"tags": "Kerajinan Tangan",
+		"headline": "Berikutnya ada kerajinan gerabah yang dibuat dari tanah liat dengan cara dibakar menggunakan tekanan suhu yang sangat tinggi. Gerabah yang sangat terkenal berasal dari Minahasa, Sulawesi Utara yang memiliki tekstur halus dan dihiasi banyak motif khas daerah. ",
+		"cover": "Gerabah-scaled.jpg",
+		"content": "[{\"id\":\"N6KLx0Wl1r\",\"type\":\"paragraph\",\"data\":{\"text\":\"Berikutnya ada kerajinan gerabah yang dibuat dari tanah liat dengan cara dibakar menggunakan tekanan suhu yang sangat tinggi. Gerabah yang sangat terkenal berasal dari Minahasa, Sulawesi Utara yang memiliki tekstur halus dan dihiasi banyak motif khas daerah.\"}},{\"id\":\"_fq6rXlNXj\",\"type\":\"paragraph\",\"data\":{\"text\":\"Selain itu, ada pula pengrajin gerabah asal Yogyakarta yang ciri khasnya selalu membuat produk kebutuhan rumah tangga. Wujud gerabah ini ada berbagai macam seperti kendi, tempayan, anglo, cobek, tungku, belanga, hingga pot bunga. Satu gerabah ini umumnya dijual mulai puluhan ribu sampai ratusan ribu disesuaikan kerumitan desainnya.\"}},{\"id\":\"41fKHrArKp\",\"type\":\"paragraph\",\"data\":{\"text\":\"&nbsp;\"}}]",
+		"compiledHash": "abfe551770ccb7456c677180aba6c577ac0eef9e4b38b722ff48d42c0a5eb0d0",
+		"compiledPath": "",
+		"dateCreated": "2025-08-25T10:43:49.690Z",
+		"dateUpdated": "2025-08-25T10:43:49.690Z"
+	},
+	{
+		"id": 1756118630941,
+		"title": "Ukiran dan Pahatan Kayu",
+		"kategori": "Ukiran",
+		"tags": "Kerajinan Tangan",
+		"headline": "Selain produk gerabah, ukiran dan pahatan kayu juga menjadi kerajinan lokal yang sangat menonjol dengan motif dan desainnya yang unik. Salah satunya kamu bisa melihat produk ukiran dari kota Jepara yang memang terkenal dengan keindahan seninya. Hal ini tentunya didukung oleh kualitas kayu yang unggul karena tumbuh di iklim tropis.",
+		"cover": "Ukiran-dan-Pahatan-Kayu-scaled.jpg",
+		"content": "[{\"id\":\"Hc1ZJxXBaU\",\"type\":\"paragraph\",\"data\":{\"text\":\"Selain produk gerabah, ukiran dan pahatan kayu juga menjadi kerajinan lokal yang sangat menonjol dengan motif dan desainnya yang unik. Salah satunya kamu bisa melihat produk ukiran dari kota Jepara yang memang terkenal dengan keindahan seninya. Hal ini tentunya didukung oleh kualitas kayu yang unggul karena tumbuh di iklim tropis.\"}},{\"id\":\"v-wsyTwt90\",\"type\":\"paragraph\",\"data\":{\"text\":\"Seni ukir ini bermula pada masa kerajaan Kalinyamat yang pada saat itu berada di bawah pengaruh Tiongkok. Berbagai produk ukiran Jepara yang sudah mendunia sampai ke Eropa diantaranya berupa patung, kaligrafi, hingga relief yang menggambarkan suasana alam Indonesia.\"}}]",
+		"compiledHash": "7f6e7404abb27daf9287ba6b7bb37f94c6f2c2d5b25a3efabeb11e712bb49a43",
+		"compiledPath": "",
+		"dateCreated": "2025-08-25T10:43:50.941Z",
+		"dateUpdated": "2025-08-25T10:43:50.941Z"
+	},
+	{
+		"id": 1756118632306,
+		"title": "Batik",
+		"kategori": "Batik",
+		"tags": "Kerajinan Tangan",
+		"headline": "Siapa sih yang nggak pernah pakai baju batik? Pastinya Blibli Friends pernah mengenakan kain batik sebagai busana untuk bepergian formal. Nah, ternyata kain batik ini sudah terkenal go international yang pembuatannya dilakukan dengan menggambar suatu corak ke kain memakai malam dan canting. ",
+		"cover": "Batik-scaled.jpg",
+		"content": "[{\"id\":\"s-TLDrynJC\",\"type\":\"paragraph\",\"data\":{\"text\":\"Siapa sih yang nggak pernah pakai baju batik? Pastinya Blibli Friends pernah mengenakan kain batik sebagai busana untuk bepergian formal. Nah, ternyata kain batik ini sudah terkenal \u003Ci\u003Ego international\u003C/i\u003E yang pembuatannya dilakukan dengan menggambar suatu corak ke kain memakai malam dan canting.\"}},{\"id\":\"IrqVscnQNV\",\"type\":\"paragraph\",\"data\":{\"text\":\"Batik sebenarnya sudah ada sejak zaman Majapahit yang sering dikenakan oleh keraton kerajaan saat menggelar acara pernikahan dan sebagai pakaian sehari-hari. seiring berjalannya waktu, batik ada yang dimanfaatkan sebagai tas, tempat pensil, daster, kemeja, dan lain sebagainya. Corak batik yang paling terkenal berasal dari Jawa, Bali, dan Kalimantan.\"}}]",
+		"compiledHash": "9cbabca13a610b48d7737ecc8515945158fef9b296a660826d0054b8be01f683",
+		"compiledPath": "",
+		"dateCreated": "2025-08-25T10:43:52.306Z",
+		"dateUpdated": "2025-08-25T10:43:52.306Z"
+	},
+	{
+		"id": 1756118633302,
+		"title": "Wayang",
+		"kategori": "Wayang",
+		"tags": "Budaya",
+		"headline": "Contoh kerajinan lokal lainnya adalah wayang kulit yang berasal dari Jawa dan diyakini sebagai cikal bakal adanya jenis wayang lainnya. Sampai saat ini nggak ada yang tahu kapan pertama kali muncul seni wayang. Namun, banyak yang percaya kalau wayang ini telah ada sejak agama Hindu dan Budha masuk ke Indonesia. ",
+		"cover": "Wayang-scaled.jpg",
+		"content": "[{\"id\":\"Cw_hg2jDiE\",\"type\":\"paragraph\",\"data\":{\"text\":\"\u003Cb\u003EContoh kerajinan lokal\u003C/b\u003E lainnya adalah wayang kulit yang berasal dari Jawa dan diyakini sebagai cikal bakal adanya jenis wayang lainnya. Sampai saat ini nggak ada yang tahu kapan pertama kali muncul seni wayang. Namun, banyak yang percaya kalau wayang ini telah ada sejak agama Hindu dan Budha masuk ke Indonesia.\"}},{\"id\":\"aiHrDOh7p4\",\"type\":\"paragraph\",\"data\":{\"text\":\"Wayang sendiri sudah diakui oleh UNESCO sebagai warisan Indonesia non-benda. Biasanya wayang terbuat dari kulit sapi yang telah dikeringkan menjadi lembaran, lalu dipahat menggunakan besi runcing dan didesain menggunakan karakter tertentu.\"}},{\"id\":\"Cqu1F-hJmG\",\"type\":\"paragraph\",\"data\":{\"text\":\"&nbsp;\"}}]",
+		"compiledHash": "af7d33b905526df855cc1ef822aa7e2710324807f2107a0ba32a31c7434b8eab",
+		"compiledPath": "",
+		"dateCreated": "2025-08-25T10:43:53.302Z",
+		"dateUpdated": "2025-08-25T10:43:53.302Z"
+	},
+	{
+		"id": 1756118634336,
+		"title": "Topeng Barong",
+		"kategori": "Topeng,Barong",
+		"tags": "Budaya",
+		"headline": "Siapa sangka kalau topeng barong juga menjadi salah satu kerajinan lokal yang mendunia? Topeng barong adalah kerajinan khas nusantara yang ikonik dengan kota Bali. Karakteristik dari topeng ini adalah warna merah putih yang menggambarkan makhluk mitologi Bali bernama Rangda.",
+		"cover": "Topeng-Barong.jpg",
+		"content": "[{\"id\":\"NwnKC3n-qY\",\"type\":\"paragraph\",\"data\":{\"text\":\"Siapa sangka kalau topeng barong juga menjadi salah satu kerajinan lokal yang mendunia? Topeng barong adalah kerajinan khas nusantara yang ikonik dengan kota Bali. Karakteristik dari topeng ini adalah warna merah putih yang menggambarkan makhluk mitologi Bali bernama Rangda.\"}},{\"id\":\"TEmZsM0a9U\",\"type\":\"paragraph\",\"data\":{\"text\":\"Menurut artinya, barong adalah simbol kebaikan dan rangda adalah simbol kejahatan. Topeng barong asal Bali terbuat dari material kayu pule dan kenangan yang dipahat menyerupai bentuk topeng dan digunakan pada tarian. Tapi, topeng barong ini bisa kamu beli sebagai \u003Ci\u003Esouvenir \u003C/i\u003Emainan atau dipajang di rumah biar makin eksotis.\"}}]",
+		"compiledHash": "26bfbf2178529e7874fadeebdebbe19b3bac2f05ee9bcf7fe7dd2e65bb9e75fe",
+		"compiledPath": "",
+		"dateCreated": "2025-08-25T10:43:54.336Z",
+		"dateUpdated": "2025-08-25T10:43:54.336Z"
+	},
+	{
+		"id": 1756118635754,
+		"title": "Kerajinan Batu dan Logam",
+		"kategori": "Batu,Cincin",
+		"tags": "Kerajinan Tangan",
+		"headline": "Kerajinan tangan yang terbuat dari batu dan logam juga nggak kalah kerennya dari produk kerajinan lokal di atas lho. Faktanya, kamu bisa menggunakan kerajinan batu dan logam sebagai perhiasan hingga dekorasi murah. Misalnya, ada banyak kerajinan batu yang kerap dijadikan patung, guci, lampu taman, hingga air mancur. ",
+		"cover": "Kerajinan-Batu-dan-Logam-scaled.jpeg",
+		"content": "[{\"id\":\"UTIp2MqusM\",\"type\":\"paragraph\",\"data\":{\"text\":\"Kerajinan tangan yang terbuat dari batu dan logam juga nggak kalah kerennya dari produk kerajinan lokal di atas lho. Faktanya, kamu bisa menggunakan kerajinan batu dan logam sebagai perhiasan hingga dekorasi murah. Misalnya, ada banyak kerajinan batu yang kerap dijadikan patung, guci, lampu taman, hingga air mancur.\"}},{\"id\":\"cHJIqR3qNX\",\"type\":\"paragraph\",\"data\":{\"text\":\"Nah, selain itu ada pula batu mulia yang kerap dipakai sebagai bahan baku pembuatan yang kerap dijadikan aksesoris perhiasan gelang dan cincin. Kemudian, untuk kerajinan logam mayoritas digunakan sebagai alat yang fungsional seperti panci, wajan, dan wastafel.\"}}]",
+		"compiledHash": "4a1f8004a6383cd8ce9bda6cc2040b6c523a00d0bab23da008db30ac1c584f50",
+		"compiledPath": "",
+		"dateCreated": "2025-08-25T10:43:55.754Z",
+		"dateUpdated": "2025-08-25T10:43:55.754Z"
+	},
+	{
+		"id": 1756118636778,
+		"title": "Kerajinan Perak",
+		"kategori": "Pajangan,Perhiasan",
+		"tags": "Kerajinan Tangan",
+		"headline": "Pendidikan moral dalam Islam merupakan aspek yang sangat penting dalam pembentukan karakter individu dan masyarakat. Islam bukan hanya sekadar ajaran agama, tetapi juga sebuah sistem lengkap yang mengatur perilaku dan etika manusia. Dalam artikel ini, kita akan membahas pentingnya pendidikan moral dalam Islam serta bagaimana ajaran agama ini membantu membentuk akhlak mulia pada individu.",
+		"cover": "Kerajinan-Perak-scaled.jpg",
+		"content": "[{\"id\":\"pP6Bw3QfCQ\",\"type\":\"paragraph\",\"data\":{\"text\":\"Kerajinan perak khas Indonesia adalah produk yang terbuat dari logam dan kerap dijadikan sebagai pajangan indah. Misalnya kamu bisa menemukan pajangan perak dengan bentuk rumah gadang, Candi Borobudur, dan lainnya. Sentra utama kerajinan perak terletak di Kotagede, Yogyakarta dan Celuk, Bali.\"}},{\"id\":\"MfUChTRJSN\",\"type\":\"paragraph\",\"data\":{\"text\":\"Namun, kedua tempat kerajinan tadi punya karakteristik yang berbeda sesuai latar belakang budaya daerahnya. Selain itu, ada pula sentra kerajinan perak di Sidoarjo, Jawa Timur yang membuat berbagai macam perhiasan perak dengan harga bervariasi mulai ratusan ribu.\"}}]",
+		"compiledHash": "6f33a3464e84fb9fdd66972082b04f27fdad8c9831fc50591210c9b6009d3155",
+		"compiledPath": "",
+		"dateCreated": "2025-08-25T10:43:56.778Z",
+		"dateUpdated": "2025-08-25T10:43:56.778Z"
+	},
+	{
+		"id": 1756118637803,
+		"title": "Kipas Kayu Cendana",
+		"kategori": "Kipas",
+		"tags": "Souvenir",
+		"headline": "Kipas kayu cendana adalah kerajinan asal Bali yang memiliki harum wangi kayu cendana. Jadi, kegunaannya nggak hanya dipakai untuk menyegarkan tubuh saja. Melainkan juga semerbak baunya akan tercium. Dengan bentuknya yang mungil dan praktis dilipat, kipas ini wajib banget kamu beli. ",
+		"cover": "kipas-kayu-cendana.jpeg",
+		"content": "[{\"id\":\"MQua-I_u1p\",\"type\":\"paragraph\",\"data\":{\"text\":\"Kipas kayu cendana adalah kerajinan asal Bali yang memiliki harum wangi kayu cendana. Jadi, kegunaannya nggak hanya dipakai untuk menyegarkan tubuh saja. Melainkan juga semerbak baunya akan tercium. Dengan bentuknya yang mungil dan praktis dilipat, kipas ini wajib banget kamu beli.\"}},{\"id\":\"JwUQhjM-_A\",\"type\":\"paragraph\",\"data\":{\"text\":\"Kipas ini biasanya didesain berupa kesenian tari khas Bali dan tokoh-tokoh legenda yang cocok dijadikan pajangan atau \u003Ci\u003Esouvenir\u003C/i\u003E pernikahan. Harganya pun bervariasi dan ada yang sampai ratusan ribu karena dibutuhkan waktu yang cukup lama menghasilkan kerajinan perak yang bernilai tinggi.\"}},{\"id\":\"eBV6lpoSBW\",\"type\":\"paragraph\",\"data\":{\"text\":\"&nbsp;\"}}]",
+		"compiledHash": "021cf5d6f8989bda270f8b28d8460de25e00adb144d27608a4902560a296b4b7",
+		"compiledPath": "",
+		"dateCreated": "2025-08-25T10:43:57.803Z",
+		"dateUpdated": "2025-08-25T10:43:57.803Z"
+	},
+	{
+		"id": 1756118638828,
+		"title": "Kerajinan Keramik",
+		"kategori": "Keramik",
+		"tags": "Souvenir",
+		"headline": "Satu lagi kerajinan lokal khas nusantara yang sangat menarik yaitu keramik. Keramik dan gerabah adalah dua produk yang berbeda lho. Sebab, keramik dibakar menggunakan suhu yang lebih tinggi lagi diatas 1200 derajat celcius untuk menghasilkan bobot yang ringan. Proses pengecatan juga dilakukan sebelum dibakar, jadi hasilnya pasti mengkilap dan halus.",
+		"cover": "Kerajinan-Keramik-scaled.jpg",
+		"content": "[{\"id\":\"IJWrK1Pgwy\",\"type\":\"paragraph\",\"data\":{\"text\":\"Satu lagi kerajinan lokal khas nusantara yang sangat menarik yaitu keramik. Keramik dan gerabah adalah dua produk yang berbeda lho. Sebab, keramik dibakar menggunakan suhu yang lebih tinggi lagi diatas 1200 derajat celcius untuk menghasilkan bobot yang ringan. Proses pengecatan juga dilakukan sebelum dibakar, jadi hasilnya pasti mengkilap dan halus.\"}},{\"id\":\"5IjENVPsZn\",\"type\":\"paragraph\",\"data\":{\"text\":\"Keramik buatan Indonesia banyak banget diminati pasar Internasional, termasuk Tiongkok dan beberapa negara Eropa.&nbsp; Keramik yang paling laris diburu konsumen seperti guci, vas bunga, patung, dekorasi rumah, dan lainnya.\"}},{\"id\":\"XJ-TfP2lzv\",\"type\":\"paragraph\",\"data\":{\"text\":\"\"}}]",
+		"compiledHash": "9777535899f0127e865be9ee5e6f003794a23c242527f37b1d4366a513d82395",
+		"compiledPath": "",
+		"dateCreated": "2025-08-25T10:43:58.828Z",
+		"dateUpdated": "2025-08-25T10:43:58.828Z"
+	}
+]

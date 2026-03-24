@@ -3,7 +3,12 @@
 # Script to insert kegiatan data from JSON file
 # Usage: ./fixtures/insert-kegiatan.sh
 
-API_URL="${API_URL:-http://localhost:8787}"
+# Load .env file if it exists
+if [ -f ".env" ]; then
+    export $(grep -v '^#' .env | xargs)
+fi
+
+API_URL="${VITE_API_BASE_URL:-${API_URL:-http://localhost:8787}}"
 DATA_FILE="fixtures/kegiatan.json"
 
 # Check if jq is installed

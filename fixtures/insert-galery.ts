@@ -1,9 +1,9 @@
 /**
- * Script to insert berita data from fixtures/berita.json to /api/berita
- * Automatically uploads cover images and sets fileId as cover field
+ * Script to insert galery data from fixtures/galery.json to /api/galery
+ * Automatically uploads gallery images and sets fileId as image field
  *
  * Usage:
- *   npx tsx fixtures/insert-berita.ts [options]
+ *   npx tsx fixtures/insert-galery.ts [options]
  *
  * Options:
  *   --url <url>    API base URL (default: http://localhost:8787)
@@ -21,38 +21,27 @@ dotenv.config()
 // Configuration
 const DEFAULT_URL = process.env.VITE_API_BASE_URL || 'http://localhost:8787'
 const DEFAULT_DELAY = 100
-const COVERS_DIR = path.join(__dirname, 'images', 'covers')
+const IMAGES_DIR = path.join(__dirname, 'images', 'galery', 'croped')
 
-interface BeritaItem {
+interface GaleryItem {
   id?: number
   title?: string
-  tags?: string
-  author?: string
-  headline?: string
-  cover?: string
-  content?: string
-  compiledHash?: string
-  compiledPath?: string
+  slug?: string
+  description?: string
+  image?: string
+  imageUrl?: string
   dateCreated?: string
   dateUpdated?: string
 }
 
-interface FixturesData {
-  berita: BeritaItem[]
-}
-
-interface CreateBeritaPayload {
+interface CreateGaleryPayload {
   title?: string
-  tags?: string
-  author?: string
-  headline?: string
-  cover?: string
-  content?: string
-  compiledHash?: string
-  compiledPath?: string
+  slug?: string
+  description?: string
+  image?: string
 }
 
-interface CreateBeritaResponse {
+interface CreateGaleryResponse {
   id: number
   [key: string]: unknown
 }
@@ -91,10 +80,10 @@ async function uploadFile(baseUrl: string, filename: string): Promise<string | n
     return uploadedFiles.get(filename)!
   }
 
-  const filePath = path.join(COVERS_DIR, filename)
+  const filePath = path.join(IMAGES_DIR, filename)
 
   if (!fs.existsSync(filePath)) {
-    console.warn(`  Warning: Cover file not found: ${filename}`)
+    console.warn(`  Warning: Image file not found: ${filename}`)
     return null
   }
 
@@ -137,25 +126,24 @@ async function uploadFile(baseUrl: string, filename: string): Promise<string | n
   }
 }
 
-async function insertBerita(baseUrl: string, limit: number | null, delay: number): Promise<void> {
+async function insertGalery(baseUrl: string, limit: number | null, delay: number): Promise<void> {
   // Read fixtures file
-  const fixturesPath = path.join(__dirname, 'berita.json')
+  const fixturesPath = path.join(__dirname, 'galery.json')
 
   if (!fs.existsSync(fixturesPath)) {
-    console.error('Error: fixtures/berita.json not found')
+    console.error('Error: fixtures/galery.json not found')
     process.exit(1)
   }
 
-  const fixturesData: FixturesData = JSON.parse(fs.readFileSync(fixturesPath, 'utf8'))
-  const beritaList = fixturesData.berita || []
+  const galeryList: GaleryItem[] = JSON.parse(fs.readFileSync(fixturesPath, 'utf8'))
 
-  if (beritaList.length === 0) {
-    console.log('No berita items found in fixtures')
+  if (galeryList.length === 0) {
+    console.log('No galery items found in fixtures')
     return
   }
 
-  const itemsToInsert = limit ? beritaList.slice(0, limit) : beritaList
-  console.log(`Found ${beritaList.length} items, inserting ${itemsToInsert.length} items...\n`)
+  const itemsToInsert = limit ? galeryList.slice(0, limit) : galeryList
+  console.log(`Found ${galeryList.length} items, inserting ${itemsToInsert.length} items...\n`)
 
   let successCount = 0
   let errorCount = 0
@@ -165,28 +153,24 @@ async function insertBerita(baseUrl: string, limit: number | null, delay: number
     const itemNum = i + 1
 
     try {
-      console.log(`[${itemNum}/${itemsToInsert.length}] Inserting: ${item.title?.substring(0, 50)}...`)
+      console.log(`[${itemNum}/${itemsToInsert.length}] Inserting: ${item.title}`)
 
-      // Upload cover image if exists
-      let coverId: string | undefined
-      if (item.cover) {
-        const uploadedId = await uploadFile(baseUrl, item.cover)
-        coverId = uploadedId || item.cover // fallback to original if upload fails
+      // Upload gallery image if exists
+      let imageId: string | undefined
+      if (item.image) {
+        const uploadedId = await uploadFile(baseUrl, item.image)
+        imageId = uploadedId || item.image // fallback to original if upload fails
       }
 
       // Prepare payload
-      const payload: CreateBeritaPayload = {
+      const payload: CreateGaleryPayload = {
         title: item.title,
-        tags: item.tags,
-        author: item.author,
-        headline: item.headline,
-        cover: coverId,
-        content: item.content,
-        compiledPath: item.compiledPath || '',
-        compiledHash: item.compiledHash || '',
+        slug: item.slug,
+        description: item.description,
+        image: imageId,
       }
 
-      const response = await fetch(`${baseUrl}/api/berita`, {
+      const response = await fetch(`${baseUrl}/api/galery`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -199,7 +183,7 @@ async function insertBerita(baseUrl: string, limit: number | null, delay: number
         throw new Error(`HTTP ${response.status}: ${errorText}`)
       }
 
-      const result: CreateBeritaResponse = await response.json()
+      const result: CreateGaleryResponse = await response.json()
       console.log(`  ✓ Success (ID: ${result.id})`)
       successCount++
 
@@ -246,14 +230,14 @@ function parseArgs(): { baseUrl: string; limit: number | null; delay: number } {
 // Main execution
 const { baseUrl, limit, delay } = parseArgs()
 
-console.log('=== Berita Insertion Script ===')
+console.log('=== Galery Insertion Script ===')
 console.log(`API URL: ${baseUrl}`)
-console.log(`Covers dir: ${COVERS_DIR}`)
+console.log(`Images dir: ${IMAGES_DIR}`)
 console.log(`Delay: ${delay}ms`)
 if (limit) console.log(`Limit: ${limit} items`)
 console.log('')
 
-insertBerita(baseUrl, limit, delay).catch(error => {
+insertGalery(baseUrl, limit, delay).catch(error => {
   console.error('Fatal error:', error)
   process.exit(1)
 })

@@ -1,9 +1,9 @@
 /**
- * Script to insert berita data from fixtures/berita.json to /api/berita
+ * Script to insert produk data from fixtures/produk.json to /api/produk
  * Automatically uploads cover images and sets fileId as cover field
  *
  * Usage:
- *   npx tsx fixtures/insert-berita.ts [options]
+ *   npx tsx fixtures/insert-produk.ts [options]
  *
  * Options:
  *   --url <url>    API base URL (default: http://localhost:8787)
@@ -21,13 +21,13 @@ dotenv.config()
 // Configuration
 const DEFAULT_URL = process.env.VITE_API_BASE_URL || 'http://localhost:8787'
 const DEFAULT_DELAY = 100
-const COVERS_DIR = path.join(__dirname, 'images', 'covers')
+const COVERS_DIR = path.join(__dirname, 'images', 'produk', 'covers')
 
-interface BeritaItem {
+interface ProdukItem {
   id?: number
   title?: string
+  kategori?: string
   tags?: string
-  author?: string
   headline?: string
   cover?: string
   content?: string
@@ -37,14 +37,10 @@ interface BeritaItem {
   dateUpdated?: string
 }
 
-interface FixturesData {
-  berita: BeritaItem[]
-}
-
-interface CreateBeritaPayload {
+interface CreateProdukPayload {
   title?: string
+  kategori?: string
   tags?: string
-  author?: string
   headline?: string
   cover?: string
   content?: string
@@ -52,7 +48,7 @@ interface CreateBeritaPayload {
   compiledPath?: string
 }
 
-interface CreateBeritaResponse {
+interface CreateProdukResponse {
   id: number
   [key: string]: unknown
 }
@@ -137,25 +133,24 @@ async function uploadFile(baseUrl: string, filename: string): Promise<string | n
   }
 }
 
-async function insertBerita(baseUrl: string, limit: number | null, delay: number): Promise<void> {
+async function insertProduk(baseUrl: string, limit: number | null, delay: number): Promise<void> {
   // Read fixtures file
-  const fixturesPath = path.join(__dirname, 'berita.json')
+  const fixturesPath = path.join(__dirname, 'produk.json')
 
   if (!fs.existsSync(fixturesPath)) {
-    console.error('Error: fixtures/berita.json not found')
+    console.error('Error: fixtures/produk.json not found')
     process.exit(1)
   }
 
-  const fixturesData: FixturesData = JSON.parse(fs.readFileSync(fixturesPath, 'utf8'))
-  const beritaList = fixturesData.berita || []
+  const produkList: ProdukItem[] = JSON.parse(fs.readFileSync(fixturesPath, 'utf8'))
 
-  if (beritaList.length === 0) {
-    console.log('No berita items found in fixtures')
+  if (produkList.length === 0) {
+    console.log('No produk items found in fixtures')
     return
   }
 
-  const itemsToInsert = limit ? beritaList.slice(0, limit) : beritaList
-  console.log(`Found ${beritaList.length} items, inserting ${itemsToInsert.length} items...\n`)
+  const itemsToInsert = limit ? produkList.slice(0, limit) : produkList
+  console.log(`Found ${produkList.length} items, inserting ${itemsToInsert.length} items...\n`)
 
   let successCount = 0
   let errorCount = 0
@@ -175,10 +170,10 @@ async function insertBerita(baseUrl: string, limit: number | null, delay: number
       }
 
       // Prepare payload
-      const payload: CreateBeritaPayload = {
+      const payload: CreateProdukPayload = {
         title: item.title,
+        kategori: item.kategori,
         tags: item.tags,
-        author: item.author,
         headline: item.headline,
         cover: coverId,
         content: item.content,
@@ -186,7 +181,7 @@ async function insertBerita(baseUrl: string, limit: number | null, delay: number
         compiledHash: item.compiledHash || '',
       }
 
-      const response = await fetch(`${baseUrl}/api/berita`, {
+      const response = await fetch(`${baseUrl}/api/produk`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -199,7 +194,7 @@ async function insertBerita(baseUrl: string, limit: number | null, delay: number
         throw new Error(`HTTP ${response.status}: ${errorText}`)
       }
 
-      const result: CreateBeritaResponse = await response.json()
+      const result: CreateProdukResponse = await response.json()
       console.log(`  ✓ Success (ID: ${result.id})`)
       successCount++
 
@@ -246,14 +241,14 @@ function parseArgs(): { baseUrl: string; limit: number | null; delay: number } {
 // Main execution
 const { baseUrl, limit, delay } = parseArgs()
 
-console.log('=== Berita Insertion Script ===')
+console.log('=== Produk Insertion Script ===')
 console.log(`API URL: ${baseUrl}`)
 console.log(`Covers dir: ${COVERS_DIR}`)
 console.log(`Delay: ${delay}ms`)
 if (limit) console.log(`Limit: ${limit} items`)
 console.log('')
 
-insertBerita(baseUrl, limit, delay).catch(error => {
+insertProduk(baseUrl, limit, delay).catch(error => {
   console.error('Fatal error:', error)
   process.exit(1)
 })

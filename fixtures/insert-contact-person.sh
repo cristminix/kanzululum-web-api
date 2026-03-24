@@ -3,7 +3,12 @@
 # Script to insert contact person data from JSON file
 # Usage: ./fixtures/insert-contact-person.sh
 
-API_URL="${API_URL:-http://localhost:8787}"
+# Load .env file if it exists
+if [ -f ".env" ]; then
+    export $(grep -v '^#' .env | xargs)
+fi
+
+API_URL="${VITE_API_BASE_URL:-${API_URL:-http://localhost:8787}}"
 DATA_FILE="fixtures/contact-person-list.json"
 
 # Check if jq is installed

@@ -1,9 +1,9 @@
 /**
- * Script to insert berita data from fixtures/berita.json to /api/berita
- * Automatically uploads cover images and sets fileId as cover field
+ * Script to insert profile data from fixtures/profile.json to /api/profile
+ * Automatically uploads profile images and sets fileId as image field
  *
  * Usage:
- *   npx tsx fixtures/insert-berita.ts [options]
+ *   npx tsx fixtures/insert-profile.ts [options]
  *
  * Options:
  *   --url <url>    API base URL (default: http://localhost:8787)
@@ -21,38 +21,37 @@ dotenv.config()
 // Configuration
 const DEFAULT_URL = process.env.VITE_API_BASE_URL || 'http://localhost:8787'
 const DEFAULT_DELAY = 100
-const COVERS_DIR = path.join(__dirname, 'images', 'covers')
+const IMAGES_DIR = path.join(__dirname, 'images', 'profile')
 
-interface BeritaItem {
+interface ProfileContent {
+  id?: string
+  type?: string
+  data?: {
+    text?: string
+  }
+}
+
+interface ProfileItem {
   id?: number
+  heading?: string
   title?: string
-  tags?: string
-  author?: string
-  headline?: string
-  cover?: string
-  content?: string
-  compiledHash?: string
-  compiledPath?: string
-  dateCreated?: string
-  dateUpdated?: string
+  image?: string
+  imageUrl?: string
+  kind?: string
+  contents?: ProfileContent[]
+  linkText?: string
 }
 
-interface FixturesData {
-  berita: BeritaItem[]
-}
-
-interface CreateBeritaPayload {
+interface CreateProfilePayload {
+  heading?: string
   title?: string
-  tags?: string
-  author?: string
-  headline?: string
-  cover?: string
-  content?: string
-  compiledHash?: string
-  compiledPath?: string
+  image?: string
+  kind?: string
+  contents?: ProfileContent[]
+  linkText?: string
 }
 
-interface CreateBeritaResponse {
+interface CreateProfileResponse {
   id: number
   [key: string]: unknown
 }
@@ -83,18 +82,28 @@ function getContentType(filename: string): string {
 }
 
 /**
+ * Extract filename from image path (handles both /assets/... and plain filename)
+ */
+function extractFilename(imagePath: string): string {
+  return path.basename(imagePath)
+}
+
+/**
  * Upload a file to the API and return the fileId
  */
-async function uploadFile(baseUrl: string, filename: string): Promise<string | null> {
+async function uploadFile(baseUrl: string, imagePath: string): Promise<string | null> {
+  // Extract filename from path
+  const filename = extractFilename(imagePath)
+
   // Check cache first
   if (uploadedFiles.has(filename)) {
     return uploadedFiles.get(filename)!
   }
 
-  const filePath = path.join(COVERS_DIR, filename)
+  const filePath = path.join(IMAGES_DIR, filename)
 
   if (!fs.existsSync(filePath)) {
-    console.warn(`  Warning: Cover file not found: ${filename}`)
+    console.warn(`  Warning: Image file not found: ${filename}`)
     return null
   }
 
@@ -137,25 +146,24 @@ async function uploadFile(baseUrl: string, filename: string): Promise<string | n
   }
 }
 
-async function insertBerita(baseUrl: string, limit: number | null, delay: number): Promise<void> {
+async function insertProfile(baseUrl: string, limit: number | null, delay: number): Promise<void> {
   // Read fixtures file
-  const fixturesPath = path.join(__dirname, 'berita.json')
+  const fixturesPath = path.join(__dirname, 'profile.json')
 
   if (!fs.existsSync(fixturesPath)) {
-    console.error('Error: fixtures/berita.json not found')
+    console.error('Error: fixtures/profile.json not found')
     process.exit(1)
   }
 
-  const fixturesData: FixturesData = JSON.parse(fs.readFileSync(fixturesPath, 'utf8'))
-  const beritaList = fixturesData.berita || []
+  const profileList: ProfileItem[] = JSON.parse(fs.readFileSync(fixturesPath, 'utf8'))
 
-  if (beritaList.length === 0) {
-    console.log('No berita items found in fixtures')
+  if (profileList.length === 0) {
+    console.log('No profile items found in fixtures')
     return
   }
 
-  const itemsToInsert = limit ? beritaList.slice(0, limit) : beritaList
-  console.log(`Found ${beritaList.length} items, inserting ${itemsToInsert.length} items...\n`)
+  const itemsToInsert = limit ? profileList.slice(0, limit) : profileList
+  console.log(`Found ${profileList.length} items, inserting ${itemsToInsert.length} items...\n`)
 
   let successCount = 0
   let errorCount = 0
@@ -165,28 +173,26 @@ async function insertBerita(baseUrl: string, limit: number | null, delay: number
     const itemNum = i + 1
 
     try {
-      console.log(`[${itemNum}/${itemsToInsert.length}] Inserting: ${item.title?.substring(0, 50)}...`)
+      console.log(`[${itemNum}/${itemsToInsert.length}] Inserting: ${item.heading} - ${item.title}...`)
 
-      // Upload cover image if exists
-      let coverId: string | undefined
-      if (item.cover) {
-        const uploadedId = await uploadFile(baseUrl, item.cover)
-        coverId = uploadedId || item.cover // fallback to original if upload fails
+      // Upload profile image if exists
+      let imageId: string | undefined
+      if (item.image) {
+        const uploadedId = await uploadFile(baseUrl, item.image)
+        imageId = uploadedId || undefined
       }
 
       // Prepare payload
-      const payload: CreateBeritaPayload = {
+      const payload: CreateProfilePayload = {
+        heading: item.heading,
         title: item.title,
-        tags: item.tags,
-        author: item.author,
-        headline: item.headline,
-        cover: coverId,
-        content: item.content,
-        compiledPath: item.compiledPath || '',
-        compiledHash: item.compiledHash || '',
+        image: imageId,
+        kind: item.kind,
+        contents: item.contents,
+        linkText: item.linkText,
       }
 
-      const response = await fetch(`${baseUrl}/api/berita`, {
+      const response = await fetch(`${baseUrl}/api/profile`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -199,7 +205,7 @@ async function insertBerita(baseUrl: string, limit: number | null, delay: number
         throw new Error(`HTTP ${response.status}: ${errorText}`)
       }
 
-      const result: CreateBeritaResponse = await response.json()
+      const result: CreateProfileResponse = await response.json()
       console.log(`  ✓ Success (ID: ${result.id})`)
       successCount++
 
@@ -246,14 +252,14 @@ function parseArgs(): { baseUrl: string; limit: number | null; delay: number } {
 // Main execution
 const { baseUrl, limit, delay } = parseArgs()
 
-console.log('=== Berita Insertion Script ===')
+console.log('=== Profile Insertion Script ===')
 console.log(`API URL: ${baseUrl}`)
-console.log(`Covers dir: ${COVERS_DIR}`)
+console.log(`Images dir: ${IMAGES_DIR}`)
 console.log(`Delay: ${delay}ms`)
 if (limit) console.log(`Limit: ${limit} items`)
 console.log('')
 
-insertBerita(baseUrl, limit, delay).catch(error => {
+insertProfile(baseUrl, limit, delay).catch(error => {
   console.error('Fatal error:', error)
   process.exit(1)
 })
