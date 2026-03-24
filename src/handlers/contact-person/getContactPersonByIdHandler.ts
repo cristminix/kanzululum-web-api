@@ -1,22 +1,21 @@
 import { Context } from "hono"
 import { createContactPersonController } from "../../utils/controllerFactory"
 
-export const updateContactPersonHandler = async (c: Context) => {
+export const getContactPersonByIdHandler = async (c: Context) => {
   try {
     const id = parseInt(c.req.param("id"))
-    const data = await c.req.json()
     const controller = createContactPersonController(c.env.KV)
-    const result = await controller.updateContactPerson(id, data)
+    const contactPerson = await controller.getContactPersonById(id)
 
-    if (!result) {
+    if (!contactPerson) {
       return c.json({ error: "Contact person not found" }, 404)
     }
 
-    return c.json(result)
+    return c.json({ contactPerson })
   } catch (error) {
     if (error instanceof Error && error.message === "Invalid ID") {
       return c.json({ error: error.message }, 400)
     }
-    return c.json({ error: "Failed to update contact person" }, 500)
+    return c.json({ error: "Failed to retrieve contact person" }, 500)
   }
 }
