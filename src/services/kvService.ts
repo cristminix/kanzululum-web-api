@@ -130,4 +130,26 @@ export class KVService {
   async saveBanner(bannerStr: string): Promise<void> {
     await this.put("banner", bannerStr)
   }
+
+  // Operasi khusus untuk galery
+  async getAllGaleryKeys(): Promise<number[]> {
+    const galeryKeys = await this.get("galery_keys")
+    return galeryKeys ? JSON.parse(galeryKeys) : []
+  }
+
+  async saveGaleryKeys(keys: number[]): Promise<void> {
+    await this.put("galery_keys", JSON.stringify(keys))
+  }
+
+  async getGalery(id: number): Promise<string | null> {
+    return await this.get(`galery_${id}`)
+  }
+
+  async saveGalery(id: number, galeryStr: string): Promise<void> {
+    await this.put(`galery_${id}`, galeryStr)
+  }
+
+  async deleteGalery(id: number): Promise<void> {
+    await this.delete(`galery_${id}`)
+  }
 }
