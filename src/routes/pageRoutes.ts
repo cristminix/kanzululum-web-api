@@ -22,7 +22,7 @@ pageRoutes.get("/page/pager", getPageWithPagerHandler)
 
 // GET /api/page/:id - Mendapatkan page berdasarkan ID
 pageRoutes.get("/page/:id", getPageByIdHandler)
-/*
+
 // POST /api/page - Membuat page baru
 pageRoutes.post(
   "/page",
@@ -39,4 +39,3 @@ pageRoutes.put(
 
 // DELETE /api/page/:id - Menghapus page
 pageRoutes.delete("/page/:id", deletePageHandler)
-*/

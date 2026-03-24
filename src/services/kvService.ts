@@ -341,4 +341,26 @@ export class KVService {
   async deleteWebNavigation(id: number): Promise<void> {
     await this.delete(`web_navigation_${id}`)
   }
+
+  // Operasi khusus untuk page
+  async getAllPageKeys(): Promise<number[]> {
+    const pageKeys = await this.get("page_keys")
+    return pageKeys ? JSON.parse(pageKeys) : []
+  }
+
+  async savePageKeys(keys: number[]): Promise<void> {
+    await this.put("page_keys", JSON.stringify(keys))
+  }
+
+  async getPage(id: number): Promise<string | null> {
+    return await this.get(`page_${id}`)
+  }
+
+  async savePage(id: number, pageStr: string): Promise<void> {
+    await this.put(`page_${id}`, pageStr)
+  }
+
+  async deletePage(id: number): Promise<void> {
+    await this.delete(`page_${id}`)
+  }
 }
