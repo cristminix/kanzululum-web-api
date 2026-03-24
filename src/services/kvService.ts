@@ -183,4 +183,48 @@ export class KVService {
   async deleteKegiatan(id: string): Promise<void> {
     await this.delete(`kegiatan_${id}`)
   }
+
+  // Operasi khusus untuk lembaga
+  async getAllLembagaKeys(): Promise<number[]> {
+    const lembagaKeys = await this.get("lembaga_keys")
+    return lembagaKeys ? JSON.parse(lembagaKeys) : []
+  }
+
+  async saveLembagaKeys(keys: number[]): Promise<void> {
+    await this.put("lembaga_keys", JSON.stringify(keys))
+  }
+
+  async getLembaga(id: number): Promise<string | null> {
+    return await this.get(`lembaga_${id}`)
+  }
+
+  async saveLembaga(id: number, lembagaStr: string): Promise<void> {
+    await this.put(`lembaga_${id}`, lembagaStr)
+  }
+
+  async deleteLembaga(id: number): Promise<void> {
+    await this.delete(`lembaga_${id}`)
+  }
+
+  // Operasi khusus untuk syarat pendaftaran
+  async getAllSyaratPendaftaranKeys(): Promise<number[]> {
+    const syaratPendaftaranKeys = await this.get("syarat_pendaftaran_keys")
+    return syaratPendaftaranKeys ? JSON.parse(syaratPendaftaranKeys) : []
+  }
+
+  async saveSyaratPendaftaranKeys(keys: number[]): Promise<void> {
+    await this.put("syarat_pendaftaran_keys", JSON.stringify(keys))
+  }
+
+  async getSyaratPendaftaran(id: number): Promise<string | null> {
+    return await this.get(`syarat_pendaftaran_${id}`)
+  }
+
+  async saveSyaratPendaftaran(id: number, syaratPendaftaranStr: string): Promise<void> {
+    await this.put(`syarat_pendaftaran_${id}`, syaratPendaftaranStr)
+  }
+
+  async deleteSyaratPendaftaran(id: number): Promise<void> {
+    await this.delete(`syarat_pendaftaran_${id}`)
+  }
 }

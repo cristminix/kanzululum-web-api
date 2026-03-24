@@ -9,6 +9,8 @@ import { BannerController } from "../controllers/bannerController"
 import { GaleryController } from "../controllers/galeryController"
 import { HeroController } from "../controllers/heroController"
 import { KegiatanController } from "../controllers/kegiatanController"
+import { LembagaController } from "../controllers/lembagaController"
+import { SyaratPendaftaranController } from "../controllers/syaratPendaftaranController"
 
 // Factory function untuk membuat controller
 export const createBeritaController = (kv: KVNamespace) => {
@@ -54,4 +56,14 @@ export const createHeroController = (kv: KVNamespace) => {
 export const createKegiatanController = (kv: KVNamespace) => {
   const kvService = new KVService(kv)
   return new KegiatanController(kvService)
+}
+
+export const createLembagaController = (kv: KVNamespace) => {
+  const kvService = new KVService(kv)
+  return new LembagaController(kvService)
+}
+
+export const createSyaratPendaftaranController = (kv: KVNamespace) => {
+  const kvService = new KVService(kv)
+  return new SyaratPendaftaranController(kvService)
 }

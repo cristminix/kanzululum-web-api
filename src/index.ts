@@ -10,6 +10,8 @@ import { bannerRoutes } from "./routes/bannerRoutes"
 import { galeryRoutes } from "./routes/galeryRoutes"
 import { heroRoutes } from "./routes/heroRoutes"
 import { kegiatanRoutes } from "./routes/kegiatanRoutes"
+import { lembagaRoutes } from "./routes/lembagaRoutes"
+import { syaratPendaftaranRoutes } from "./routes/syaratPendaftaranRoutes"
 
 // Inisialisasi aplikasi Hono
 const app = new Hono<{ Bindings: { KV: KVNamespace } }>()
@@ -47,6 +49,8 @@ app.route("/api", bannerRoutes)
 app.route("/api", galeryRoutes)
 app.route("/api", heroRoutes)
 app.route("/api", kegiatanRoutes)
+app.route("/api", lembagaRoutes)
+app.route("/api", syaratPendaftaranRoutes)
 
 // Error handling middleware
 app.onError((err, c) => {
