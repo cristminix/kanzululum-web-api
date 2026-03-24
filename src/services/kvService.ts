@@ -258,4 +258,26 @@ export class KVService {
   async saveProfile(profileStr: string): Promise<void> {
     await this.put("profile", profileStr)
   }
+
+  // Operasi khusus untuk social network links
+  async getAllSocialNetworkLinksKeys(): Promise<number[]> {
+    const socialNetworkLinksKeys = await this.get("social_network_links_keys")
+    return socialNetworkLinksKeys ? JSON.parse(socialNetworkLinksKeys) : []
+  }
+
+  async saveSocialNetworkLinksKeys(keys: number[]): Promise<void> {
+    await this.put("social_network_links_keys", JSON.stringify(keys))
+  }
+
+  async getSocialNetworkLinks(id: number): Promise<string | null> {
+    return await this.get(`social_network_links_${id}`)
+  }
+
+  async saveSocialNetworkLinks(id: number, socialNetworkLinksStr: string): Promise<void> {
+    await this.put(`social_network_links_${id}`, socialNetworkLinksStr)
+  }
+
+  async deleteSocialNetworkLinks(id: number): Promise<void> {
+    await this.delete(`social_network_links_${id}`)
+  }
 }

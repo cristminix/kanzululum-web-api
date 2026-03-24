@@ -13,6 +13,7 @@ import { LembagaController } from "../controllers/lembagaController"
 import { SyaratPendaftaranController } from "../controllers/syaratPendaftaranController"
 import { BiayaPendaftaranController } from "../controllers/biayaPendaftaranController"
 import { ProfileController } from "../controllers/profileController"
+import { SocialNetworkLinksController } from "../controllers/socialNetworkLinksController"
 
 // Factory function untuk membuat controller
 export const createBeritaController = (kv: KVNamespace) => {
@@ -78,4 +79,9 @@ export const createBiayaPendaftaranController = (kv: KVNamespace) => {
 export const createProfileController = (kv: KVNamespace) => {
   const kvService = new KVService(kv)
   return new ProfileController(kvService)
+}
+
+export const createSocialNetworkLinksController = (kv: KVNamespace) => {
+  const kvService = new KVService(kv)
+  return new SocialNetworkLinksController(kvService)
 }
