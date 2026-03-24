@@ -1,9 +1,24 @@
 name = "kv-rest-api"
 main = "src/index.ts"
-compatibility_date = "2024-01-01"
+compatibility_date = "2023-12-01"
+compatibility_flags = [ "nodejs_compat" ]
 
 [vars]
-# Environment variables can be added here
+KV_STORE="IDB_KEYVAL"
+JWT_SECRET = "kosong-adalah-berisi-berisi-adalah-kosong"
+JWT_FINGERPRINT_COOKIE_NAME="__Secure-Fgp"
+JWT_FINGERPRINT_REFRESH_COOKIE_NAME="__Secure-Fgp-Refresh"
+
+ALLOWED_ORIGINS = "http://127.0.0.1:5173,http://localhost:5173,https://www.ponpeskanzululumcirebon.com"
+
+# Token expiration in minutes
+REFRESH_TOKEN_EXPIRATION = 86400
+TOKEN_EXPIRATION = 86400
+
+
+[[kv_namespaces]]
+binding = "IDB_KEYVAL"
+id = ""
 
 [[kv_namespaces]]
 binding = "KV"
@@ -16,3 +31,8 @@ name = "kv-rest-api-dev"
 # Production environment configuration
 [env.production]
 name = "kv-rest-api-prod"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "kanzululumdb"
+database_id = ""

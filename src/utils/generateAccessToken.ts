@@ -1,0 +1,19 @@
+import { generateUserFingerprint } from "./generateUserFingerprint"
+import { sign } from "hono/jwt"
+
+export async function generateAccessToken(secret, uid, exp, roles: any[] = []) {
+  const { fingerprint, hash } = generateUserFingerprint()
+  const payload = {
+    userFingerprint: hash,
+    uid,
+    roles,
+    exp: Math.floor(Date.now() / 1000) + 60 * exp,
+  }
+  console.log({ payload })
+  const token = await sign(payload, secret)
+
+  return {
+    token,
+    fingerprint,
+  }
+}

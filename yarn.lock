@@ -316,6 +316,11 @@
   resolved "https://registry.yarnpkg.com/@fastify/busboy/-/busboy-2.1.1.tgz#b9da6a878a371829a0502c9b6c1c143ef6663f4d"
   integrity sha512-vBZP4NlzfOlerQTnba4aqZoMhE/a9HY7HRqoOPaETQcSQuWEIyZMHGfVu6w9wGtGK5fED5qRs2DteVCjOH60sA==
 
+"@hono-dev/zod-body-validator@^0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@hono-dev/zod-body-validator/-/zod-body-validator-0.1.1.tgz#eb7924411ca092a932a86e17ff20a9bea9345c75"
+  integrity sha512-97o1JwBFDLF89buSWtPQZvymkWEsUKk9YVghRn88uBQ5W3e8DcPLxzx6hKnw5M06i/ATJx3l79nTmQu4YSTofw==
+
 "@img/sharp-darwin-arm64@0.33.5":
   version "0.33.5"
   resolved "https://registry.yarnpkg.com/@img/sharp-darwin-arm64/-/sharp-darwin-arm64-0.33.5.tgz#ef5b5a07862805f1e8145a377c8ba6e98813ca08"
@@ -528,6 +533,11 @@ dotenv@^17.3.1:
   version "17.3.1"
   resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-17.3.1.tgz#2706f5b0165e45a1503348187b8468f87fe6aae2"
   integrity sha512-IO8C/dzEb6O3F9/twg6ZLXz164a2fhTnEWb95H23Dm4OuN+92NmEAlTrupP9VW6Jm3sO26tQlqyvyi4CsnY9GA==
+
+drizzle-orm@^0.45.1:
+  version "0.45.1"
+  resolved "https://registry.yarnpkg.com/drizzle-orm/-/drizzle-orm-0.45.1.tgz#a8c313ee680ca12e3f00a1e4249d7110d4a4deed"
+  integrity sha512-Te0FOdKIistGNPMq2jscdqngBRfBpC8uMFVwqjf6gtTVJHIQ/dosgV/CLBU2N4ZJBsXL5savCba9b0YJskKdcA==
 
 esbuild@0.17.19:
   version "0.17.19"

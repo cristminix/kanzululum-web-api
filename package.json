@@ -19,7 +19,9 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "@hono-dev/zod-body-validator": "^0.1.1",
     "dotenv": "^17.3.1",
+    "drizzle-orm": "^0.45.1",
     "hono": "^4.0.0"
   },
   "devDependencies": {
