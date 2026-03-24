@@ -152,4 +152,13 @@ export class KVService {
   async deleteGalery(id: number): Promise<void> {
     await this.delete(`galery_${id}`)
   }
+
+  // Operasi khusus untuk hero (single entity)
+  async getHero(): Promise<string | null> {
+    return await this.get("hero")
+  }
+
+  async saveHero(heroStr: string): Promise<void> {
+    await this.put("hero", heroStr)
+  }
 }

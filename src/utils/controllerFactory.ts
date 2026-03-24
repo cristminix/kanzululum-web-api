@@ -7,6 +7,7 @@ import { CompanyController } from "../controllers/companyController"
 import { ContactPersonController } from "../controllers/contactPersonController"
 import { BannerController } from "../controllers/bannerController"
 import { GaleryController } from "../controllers/galeryController"
+import { HeroController } from "../controllers/heroController"
 
 // Factory function untuk membuat controller
 export const createBeritaController = (kv: KVNamespace) => {
@@ -42,4 +43,9 @@ export const createBannerController = (kv: KVNamespace) => {
 export const createGaleryController = (kv: KVNamespace) => {
   const kvService = new KVService(kv)
   return new GaleryController(kvService)
+}
+
+export const createHeroController = (kv: KVNamespace) => {
+  const kvService = new KVService(kv)
+  return new HeroController(kvService)
 }
