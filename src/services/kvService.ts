@@ -104,13 +104,26 @@ export class KVService {
     await this.delete(`template_${id}`)
   }
 
-  // Operasi khusus untuk company (single entity)
-  async getCompany(): Promise<string | null> {
-    return await this.get("company")
+  // Operasi khusus untuk company (multi entity)
+  async getAllCompanyKeys(): Promise<number[]> {
+    const companyKeys = await this.get("company_keys")
+    return companyKeys ? JSON.parse(companyKeys) : []
   }
 
-  async saveCompany(companyStr: string): Promise<void> {
-    await this.put("company", companyStr)
+  async saveCompanyKeys(keys: number[]): Promise<void> {
+    await this.put("company_keys", JSON.stringify(keys))
+  }
+
+  async getCompanyById(id: number): Promise<string | null> {
+    return await this.get(`company_${id}`)
+  }
+
+  async saveCompanyById(id: number, companyStr: string): Promise<void> {
+    await this.put(`company_${id}`, companyStr)
+  }
+
+  async deleteCompanyById(id: number): Promise<void> {
+    await this.delete(`company_${id}`)
   }
 
   // Operasi khusus untuk contact person (single entity)

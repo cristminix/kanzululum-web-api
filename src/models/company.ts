@@ -1,5 +1,6 @@
 // Interface untuk struktur data company
 export interface Company {
+  id?: number
   name?: string
   shortAddress?: string
   address?: string

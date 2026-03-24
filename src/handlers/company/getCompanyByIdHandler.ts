@@ -1,22 +1,21 @@
 import { Context } from "hono"
 import { createCompanyController } from "../../utils/controllerFactory"
 
-export const updateCompanyHandler = async (c: Context) => {
+export const getCompanyByIdHandler = async (c: Context) => {
   try {
     const id = parseInt(c.req.param("id"))
-    const data = await c.req.json()
     const controller = createCompanyController(c.env.KV)
-    const result = await controller.updateCompany(id, data)
+    const company = await controller.getCompanyById(id)
 
-    if (!result) {
+    if (!company) {
       return c.json({ error: "Company not found" }, 404)
     }
 
-    return c.json(result)
+    return c.json({ company })
   } catch (error) {
     if (error instanceof Error && error.message === "Invalid ID") {
       return c.json({ error: error.message }, 400)
     }
-    return c.json({ error: "Failed to update company" }, 500)
+    return c.json({ error: "Failed to retrieve company" }, 500)
   }
 }

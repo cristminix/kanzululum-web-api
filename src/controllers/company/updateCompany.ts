@@ -3,25 +3,32 @@ import { KVService } from "../../services/kvService"
 
 export async function updateCompany(
   kvService: KVService,
+  id: number,
   data: Partial<Company>
-): Promise<{ company: Company; message: string }> {
+): Promise<{ company: Company; message: string } | null> {
+  if (isNaN(id)) {
+    throw new Error("Invalid ID")
+  }
+
   try {
-    // Get existing company data
-    const existingStr = await kvService.getCompany()
-    let existing: Company = {}
-
-    if (existingStr) {
-      existing = JSON.parse(existingStr) as Company
+    // Check if company exists
+    const existingCompanyStr = await kvService.getCompanyById(id)
+    if (!existingCompanyStr) {
+      return null
     }
 
-    // Merge with new data
-    const updated: Company = {
-      ...existing,
+    const existingCompany = JSON.parse(existingCompanyStr) as Company
+
+    // Merge existing data with new data
+    const updatedCompany: Company = {
+      ...existingCompany,
       ...data,
+      id // Preserve the original id
     }
 
-    await kvService.saveCompany(JSON.stringify(updated))
-    return { company: updated, message: "Company updated successfully" }
+    await kvService.saveCompanyById(id, JSON.stringify(updatedCompany))
+
+    return { company: updatedCompany, message: "Company updated successfully" }
   } catch (error) {
     throw new Error("Failed to update company")
   }
