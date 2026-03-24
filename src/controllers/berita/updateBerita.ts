@@ -19,13 +19,13 @@ export async function updateBerita(
 
     const existingBerita = JSON.parse(existingBeritaStr) as Berita
 
-    // Validasi field yang diperlukan
-    if (data.cover && !kvService.isValidUrl(data.cover)) {
-      throw new Error("Cover must be a valid URL")
-    }
-
-    if (data.cover && data.cover.length > 500) {
-      throw new Error("Cover URL must not exceed 500 characters")
+    // Hapus cover lama jika cover baru berbeda
+    if (
+      data.cover !== undefined &&
+      data.cover !== existingBerita.cover &&
+      existingBerita.cover
+    ) {
+      await kvService.delete(existingBerita.cover)
     }
 
     // Update berita

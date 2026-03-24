@@ -22,7 +22,7 @@ beritaRoutes.get("/berita/pager", getBeritaWithPagerHandler)
 
 // GET /api/berita/:id - Mendapatkan berita berdasarkan ID
 beritaRoutes.get("/berita/:id", getBeritaByIdHandler)
-/*
+
 // POST /api/berita - Membuat berita baru
 beritaRoutes.post(
   "/berita",
@@ -39,4 +39,3 @@ beritaRoutes.put(
 
 // DELETE /api/berita/:id - Menghapus berita
 beritaRoutes.delete("/berita/:id", deleteBeritaHandler)
-*/

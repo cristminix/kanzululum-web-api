@@ -6,7 +6,8 @@ export interface Berita {
   author?: string
   headline?: string
   cover?: string
-  content?: string
+  coverUrl?: string
+  content?: string | any[]
   compiledHash?: string
   compiledPath?: string
   dateCreated?: string

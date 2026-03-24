@@ -10,6 +10,17 @@ export async function getAllBerita(kvService: KVService): Promise<{ berita: Beri
       const beritaStr = await kvService.getBerita(key)
       if (beritaStr) {
         const berita = JSON.parse(beritaStr) as Berita
+        if (berita.cover) {
+          berita.coverUrl = `/api/files/${berita.cover}?preview=true`
+        }
+        if (berita.content) {
+          try {
+            //@ts-ignore
+            berita.content = JSON.parse(berita.content)
+          } catch (error) {
+            berita.content = []
+          }
+        }
         beritaList.push(berita)
       }
     }

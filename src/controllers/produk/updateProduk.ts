@@ -11,10 +11,17 @@ export async function updateProduk(
     if (!existingProdukStr) {
       return null
     }
-    
+
     const existingProduk = JSON.parse(existingProdukStr) as Produk
     const dateUpdated = new Date().toISOString()
-    
+
+    // Hapus cover lama jika cover baru berbeda
+    if (data.cover !== undefined && data.cover !== existingProduk.cover) {
+      if (existingProduk.cover) {
+        await kvService.delete(existingProduk.cover)
+      }
+    }
+
     const updatedProduk: Produk = {
       ...existingProduk,
       ...data,
@@ -22,10 +29,10 @@ export async function updateProduk(
       dateCreated: existingProduk.dateCreated,
       dateUpdated
     }
-    
+
     // Save updated produk
     await kvService.saveProduk(id, JSON.stringify(updatedProduk))
-    
+
     return {
       produk: updatedProduk,
       message: "Produk updated successfully"

@@ -21,10 +21,10 @@ export async function createBerita(
       // }
     }
 
-    if (data.cover && data.cover.length > 500) {
-      console.log("Cover URL too long:", data.cover.length)
-      throw new Error("Cover URL must not exceed 500 characters")
-    }
+    // if (data.cover && data.cover.length > 500) {
+    //   console.log("Cover URL too long:", data.cover.length)
+    //   throw new Error("Cover URL must not exceed 500 characters")
+    // }
 
     // Generate ID baru
     const id = kvService.generateId()
