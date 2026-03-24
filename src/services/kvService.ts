@@ -280,4 +280,26 @@ export class KVService {
   async deleteSocialNetworkLinks(id: number): Promise<void> {
     await this.delete(`social_network_links_${id}`)
   }
+
+  // Operasi khusus untuk web navigation
+  async getAllWebNavigationKeys(): Promise<number[]> {
+    const webNavigationKeys = await this.get("web_navigation_keys")
+    return webNavigationKeys ? JSON.parse(webNavigationKeys) : []
+  }
+
+  async saveWebNavigationKeys(keys: number[]): Promise<void> {
+    await this.put("web_navigation_keys", JSON.stringify(keys))
+  }
+
+  async getWebNavigation(id: number): Promise<string | null> {
+    return await this.get(`web_navigation_${id}`)
+  }
+
+  async saveWebNavigation(id: number, webNavigationStr: string): Promise<void> {
+    await this.put(`web_navigation_${id}`, webNavigationStr)
+  }
+
+  async deleteWebNavigation(id: number): Promise<void> {
+    await this.delete(`web_navigation_${id}`)
+  }
 }

@@ -15,6 +15,7 @@ import { syaratPendaftaranRoutes } from "./routes/syaratPendaftaranRoutes"
 import { biayaPendaftaranRoutes } from "./routes/biayaPendaftaranRoutes"
 import { profileRoutes } from "./routes/profileRoutes"
 import { socialNetworkLinksRoutes } from "./routes/socialNetworkLinksRoutes"
+import { webNavigationRoutes } from "./routes/webNavigationRoutes"
 
 // Inisialisasi aplikasi Hono
 const app = new Hono<{ Bindings: { KV: KVNamespace } }>()
@@ -57,6 +58,7 @@ app.route("/api", syaratPendaftaranRoutes)
 app.route("/api", biayaPendaftaranRoutes)
 app.route("/api", profileRoutes)
 app.route("/api", socialNetworkLinksRoutes)
+app.route("/api", webNavigationRoutes)
 
 // Error handling middleware
 app.onError((err, c) => {
