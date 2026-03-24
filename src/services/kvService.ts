@@ -81,4 +81,53 @@ export class KVService {
   async deleteProduk(id: number): Promise<void> {
     await this.delete(`produk_${id}`)
   }
+
+  // Operasi khusus untuk template
+  async getAllTemplateKeys(): Promise<number[]> {
+    const templateKeys = await this.get("template_keys")
+    return templateKeys ? JSON.parse(templateKeys) : []
+  }
+
+  async saveTemplateKeys(keys: number[]): Promise<void> {
+    await this.put("template_keys", JSON.stringify(keys))
+  }
+
+  async getTemplate(id: number): Promise<string | null> {
+    return await this.get(`template_${id}`)
+  }
+
+  async saveTemplate(id: number, templateStr: string): Promise<void> {
+    await this.put(`template_${id}`, templateStr)
+  }
+
+  async deleteTemplate(id: number): Promise<void> {
+    await this.delete(`template_${id}`)
+  }
+
+  // Operasi khusus untuk company (single entity)
+  async getCompany(): Promise<string | null> {
+    return await this.get("company")
+  }
+
+  async saveCompany(companyStr: string): Promise<void> {
+    await this.put("company", companyStr)
+  }
+
+  // Operasi khusus untuk contact person (single entity)
+  async getContactPerson(): Promise<string | null> {
+    return await this.get("contact_person")
+  }
+
+  async saveContactPerson(contactPersonStr: string): Promise<void> {
+    await this.put("contact_person", contactPersonStr)
+  }
+
+  // Operasi khusus untuk banner (single entity)
+  async getBanner(): Promise<string | null> {
+    return await this.get("banner")
+  }
+
+  async saveBanner(bannerStr: string): Promise<void> {
+    await this.put("banner", bannerStr)
+  }
 }

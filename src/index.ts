@@ -3,6 +3,10 @@ import { cors } from "hono/cors"
 import { beritaRoutes } from "./routes/beritaRoutes"
 import { dataRoutes } from "./routes/dataRoutes"
 import { produkRoutes } from "./routes/produkRoutes"
+import { templateRoutes } from "./routes/templateRoutes"
+import { companyRoutes } from "./routes/companyRoutes"
+import { contactPersonRoutes } from "./routes/contactPersonRoutes"
+import { bannerRoutes } from "./routes/bannerRoutes"
 
 // Inisialisasi aplikasi Hono
 const app = new Hono<{ Bindings: { KV: KVNamespace } }>()
@@ -33,6 +37,10 @@ app.get("/health", (c) => {
 app.route("/api", dataRoutes)
 app.route("/api", beritaRoutes)
 app.route("/api", produkRoutes)
+app.route("/api", templateRoutes)
+app.route("/api", companyRoutes)
+app.route("/api", contactPersonRoutes)
+app.route("/api", bannerRoutes)
 
 // Error handling middleware
 app.onError((err, c) => {
