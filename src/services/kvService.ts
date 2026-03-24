@@ -227,4 +227,35 @@ export class KVService {
   async deleteSyaratPendaftaran(id: number): Promise<void> {
     await this.delete(`syarat_pendaftaran_${id}`)
   }
+
+  // Operasi khusus untuk biaya pendaftaran
+  async getAllBiayaPendaftaranKeys(): Promise<number[]> {
+    const biayaPendaftaranKeys = await this.get("biaya_pendaftaran_keys")
+    return biayaPendaftaranKeys ? JSON.parse(biayaPendaftaranKeys) : []
+  }
+
+  async saveBiayaPendaftaranKeys(keys: number[]): Promise<void> {
+    await this.put("biaya_pendaftaran_keys", JSON.stringify(keys))
+  }
+
+  async getBiayaPendaftaran(id: number): Promise<string | null> {
+    return await this.get(`biaya_pendaftaran_${id}`)
+  }
+
+  async saveBiayaPendaftaran(id: number, biayaPendaftaranStr: string): Promise<void> {
+    await this.put(`biaya_pendaftaran_${id}`, biayaPendaftaranStr)
+  }
+
+  async deleteBiayaPendaftaran(id: number): Promise<void> {
+    await this.delete(`biaya_pendaftaran_${id}`)
+  }
+
+  // Operasi khusus untuk profile (single entity)
+  async getProfile(): Promise<string | null> {
+    return await this.get("profile")
+  }
+
+  async saveProfile(profileStr: string): Promise<void> {
+    await this.put("profile", profileStr)
+  }
 }
