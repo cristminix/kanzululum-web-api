@@ -14,8 +14,11 @@ export const profileValidator = (value: any, c: Context) => {
     if (typeof value.image !== "string") {
       return c.json({ error: "Image must be a string" }, 400)
     }
-    if (value.image && value.image.length > 500) {
-      return c.json({ error: "Image URL must not exceed 500 characters" }, 400)
+  }
+
+  if (value.imageUrl !== undefined) {
+    if (typeof value.imageUrl !== "string") {
+      return c.json({ error: "Image URL must be a string" }, 400)
     }
   }
 

@@ -9,6 +9,5 @@ export type Env = {
 
   REFRESH_TOKEN_EXPIRATION: number
   TOKEN_EXPIRATION: number
-  IDB_KEYVAL: KVNamespace
-  B2B_FILES_KV: KVNamespace
+  KV: KVNamespace
 }

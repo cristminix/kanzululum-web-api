@@ -36,6 +36,6 @@ bannerRoutes.put(
   validator("json", bannerValidator),
   updateBannerHandler
 )
-
+//
 // DELETE /api/banner/:id - Menghapus banner
 bannerRoutes.delete("/banner/:id", deleteBannerHandler)

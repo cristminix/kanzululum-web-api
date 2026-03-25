@@ -10,13 +10,16 @@ export const bannerValidator = (value: any, c: Context) => {
     return c.json({ error: "Slug must be a string" }, 400)
   }
 
-  if (value.image !== undefined) {
-    if (typeof value.image !== "string") {
-      return c.json({ error: "Image must be a string" }, 400)
-    }
-    if (value.image && value.image.length > 500) {
-      return c.json({ error: "Image must not exceed 500 characters" }, 400)
-    }
+  if (value.image !== undefined && typeof value.image !== "string") {
+    return c.json({ error: "Image must be a string" }, 400)
+  }
+
+  if (value.imageUrl !== undefined && typeof value.imageUrl !== "string") {
+    return c.json({ error: "Image URL must be a string" }, 400)
+  }
+
+  if (value.page !== undefined && typeof value.page !== "string") {
+    return c.json({ error: "Page must be a string" }, 400)
   }
 
   return value

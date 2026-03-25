@@ -4,7 +4,7 @@ compatibility_date = "2023-12-01"
 compatibility_flags = [ "nodejs_compat" ]
 
 [vars]
-KV_STORE="IDB_KEYVAL"
+KV_STORE="KV"
 JWT_SECRET = "kosong-adalah-berisi-berisi-adalah-kosong"
 JWT_FINGERPRINT_COOKIE_NAME="__Secure-Fgp"
 JWT_FINGERPRINT_REFRESH_COOKIE_NAME="__Secure-Fgp-Refresh"
@@ -16,23 +16,13 @@ REFRESH_TOKEN_EXPIRATION = 86400
 TOKEN_EXPIRATION = 86400
 
 
-[[kv_namespaces]]
-binding = "IDB_KEYVAL"
-id = ""
-
+# KV namespace for content storage
 [[kv_namespaces]]
 binding = "KV"
 id = "04d0e33bf17247628c22f96b93bc0362"
 
-# Development environment configuration
-[env.dev]
-name = "kv-rest-api-dev"
-
-# Production environment configuration
-[env.production]
-name = "kv-rest-api-prod"
-
+# D1 Database for users/sessions (use --local for development)
 [[d1_databases]]
 binding = "DB"
 database_name = "kanzululumdb"
-database_id = ""
+database_id = "placeholder-for-local-dev"

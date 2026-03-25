@@ -3,6 +3,7 @@ import { KVService } from "../services/kvService"
 import { getAllProfiles } from "./profile/getAllProfiles"
 import { getProfileWithPager } from "./profile/getProfileWithPager"
 import { getProfileById } from "./profile/getProfileById"
+import { getProfileByKind } from "./profile/getProfileByKind"
 import { createProfile } from "./profile/createProfile"
 import { updateProfile } from "./profile/updateProfile"
 import { deleteProfile } from "./profile/deleteProfile"
@@ -31,6 +32,11 @@ export class ProfileController {
   // GET /api/profile/:id - Mendapatkan profile berdasarkan ID
   async getProfileById(id: number): Promise<Profile | null> {
     return getProfileById(this.kvService, id)
+  }
+
+  // GET /api/profile/kind/:kind - Mendapatkan profile berdasarkan kind
+  async getProfileByKind(kind: string): Promise<Profile | null> {
+    return getProfileByKind(this.kvService, kind)
   }
 
   // POST /api/profile - Membuat profile baru
