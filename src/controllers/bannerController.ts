@@ -3,8 +3,10 @@ import { KVService } from "../services/kvService"
 import { getAllBanner } from "./banner/getAllBanner"
 import { getBannerWithPager } from "./banner/getBannerWithPager"
 import { getBannerById } from "./banner/getBannerById"
+import { getBannerBySlug } from "./banner/getBannerBySlug"
 import { createBanner } from "./banner/createBanner"
 import { updateBanner } from "./banner/updateBanner"
+import { updateBannerBySlug } from "./banner/updateBannerBySlug"
 import { deleteBanner } from "./banner/deleteBanner"
 
 export class BannerController {
@@ -32,6 +34,11 @@ export class BannerController {
     return getBannerById(this.kvService, id)
   }
 
+  // GET /api/banner/slug/:slug - Mendapatkan banner berdasarkan slug
+  async getBannerBySlug(slug: string): Promise<Banner | null> {
+    return getBannerBySlug(this.kvService, slug)
+  }
+
   // POST /api/banner - Membuat banner baru
   async createBanner(
     data: Partial<Banner>
@@ -45,6 +52,14 @@ export class BannerController {
     data: Partial<Banner>
   ): Promise<{ banner: Banner; message: string } | null> {
     return updateBanner(this.kvService, id, data)
+  }
+
+  // POST /api/banner/slug/:slug - Memperbarui banner berdasarkan slug
+  async updateBannerBySlug(
+    slug: string,
+    data: Partial<Banner>
+  ): Promise<{ banner: Banner; message: string } | null> {
+    return updateBannerBySlug(this.kvService, slug, data)
   }
 
   // DELETE /api/banner/:id - Menghapus banner

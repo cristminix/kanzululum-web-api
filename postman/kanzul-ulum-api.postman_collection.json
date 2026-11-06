@@ -1,0 +1,2627 @@
+{
+  "info": {
+    "_postman_id": "c18a24db-6be5-4d78-b118-8f81efc9b291",
+    "name": "Kanzul Ulum Backend API",
+    "description": "Koleksi Postman resmi untuk API Backend Pondok Pesantren Kanzul Ulum berbasis Cloudflare Workers & Hono KV REST API.\n\nCatatan Penting:\n- Seluruh request mutasi (POST, PUT, PATCH, DELETE) di bawah `/api/*` membutuhkan header `X-Api-Key`.\n- Base URL default: `http://localhost:8787` (jalankan dengan `yarn dev`).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8787",
+      "type": "string"
+    },
+    {
+      "key": "apiKey",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "00. System",
+      "item": [
+        {
+          "name": "Root Welcome",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ""
+              ]
+            },
+            "description": "Pesan selamat datang dan timestamp"
+          }
+        },
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/health",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "health"
+              ]
+            },
+            "description": "Cek kesehatan status server (status: OK)"
+          }
+        }
+      ]
+    },
+    {
+      "name": "01. Berita",
+      "item": [
+        {
+          "name": "Get All Berita",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/berita",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "berita"
+              ]
+            },
+            "description": "Mendapatkan daftar semua berita"
+          }
+        },
+        {
+          "name": "Get Berita with Pagination",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/berita/pager?page=1&limit=10&category=&author=",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "berita",
+                "pager"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1",
+                  "description": "Nomor halaman (default: 1)"
+                },
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Jumlah item per halaman (default: 10)"
+                },
+                {
+                  "key": "category",
+                  "value": "",
+                  "description": "Filter berdasarkan kategori/tag (opsional)",
+                  "disabled": true
+                },
+                {
+                  "key": "author",
+                  "value": "",
+                  "description": "Filter berdasarkan author (opsional)",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "Mendapatkan data berita dengan pagination dan filter opsional"
+          }
+        },
+        {
+          "name": "Get Berita by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/berita/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "berita",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1",
+                  "description": "ID berita (timestamp/number)"
+                }
+              ]
+            },
+            "description": "Mendapatkan detail berita berdasarkan ID"
+          }
+        },
+        {
+          "name": "Create Berita",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text",
+                "description": "Header API Key wajib untuk mutasi data (POST/PUT/PATCH/DELETE)"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/berita",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "berita"
+              ]
+            },
+            "description": "Membuat data berita baru (Wajib X-Api-Key)",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Peringatan Hari Santri Nasional di Ponpes Kanzul Ulum\",\n  \"tags\": \"santri,kegiatan,hari-santri\",\n  \"author\": \"Redaksi Kanzul Ulum\",\n  \"headline\": \"Ratusan santri mengikuti upacara peringatan Hari Santri Nasional dengan khidmat.\",\n  \"cover\": \"hari-santri.jpg\",\n  \"coverUrl\": \"https://example.com/images/hari-santri.jpg\",\n  \"content\": \"Pondok Pesantren Kanzul Ulum menggelar upacara dan berbagai perlombaan dalam memperingati Hari Santri Nasional...\",\n  \"compiledHash\": \"abc123hash\",\n  \"compiledPath\": \"/compiled/abc123hash\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Update Berita",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text",
+                "description": "Header API Key wajib untuk mutasi data (POST/PUT/PATCH/DELETE)"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/berita/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "berita",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1",
+                  "description": "ID berita yang ingin diperbarui"
+                }
+              ]
+            },
+            "description": "Memperbarui data berita berdasarkan ID (Wajib X-Api-Key)",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Peringatan Hari Santri Nasional di Ponpes Kanzul Ulum (Updated)\",\n  \"tags\": \"santri,kegiatan,update\",\n  \"author\": \"Redaksi Kanzul Ulum\",\n  \"headline\": \"Ratusan santri mengikuti upacara dengan khidmat.\",\n  \"cover\": \"hari-santri-updated.jpg\",\n  \"coverUrl\": \"https://example.com/images/hari-santri-updated.jpg\",\n  \"content\": \"Pembaruan isi artikel peringatan Hari Santri Nasional...\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Delete Berita",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text",
+                "description": "Header API Key wajib untuk mutasi data (POST/PUT/PATCH/DELETE)"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/berita/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "berita",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1",
+                  "description": "ID berita yang ingin dihapus"
+                }
+              ]
+            },
+            "description": "Menghapus data berita berdasarkan ID (Wajib X-Api-Key)"
+          }
+        }
+      ]
+    },
+    {
+      "name": "02. Produk",
+      "item": [
+        {
+          "name": "Get All Produk",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/produk",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "produk"
+              ]
+            },
+            "description": "Mendapatkan semua produk"
+          }
+        },
+        {
+          "name": "Get Produk with Pagination",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/produk/pager?page=1&limit=10&kategori=",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "produk",
+                "pager"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1",
+                  "description": "Nomor halaman"
+                },
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Batas item per halaman"
+                },
+                {
+                  "key": "kategori",
+                  "value": "",
+                  "description": "Filter kategori (opsional)",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "Mendapatkan data produk dengan pagination"
+          }
+        },
+        {
+          "name": "Get Produk by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/produk/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "produk",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1",
+                  "description": "ID produk"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Produk",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text",
+                "description": "Header API Key wajib untuk mutasi data (POST/PUT/PATCH/DELETE)"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/produk",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "produk"
+              ]
+            },
+            "description": "Menambahkan produk baru (Wajib X-Api-Key)",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Madu Murni Kanzul Ulum 500ml\",\n  \"kategori\": \"herbal\",\n  \"tags\": \"madu,herbal,kesehatan\",\n  \"headline\": \"Madu murni alami budidaya santri\",\n  \"cover\": \"madu-500ml.jpg\",\n  \"coverUrl\": \"https://example.com/images/madu.jpg\",\n  \"content\": \"Madu murni alami kaya khasiat hasil olahan mandiri pesantren.\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Update Produk",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text",
+                "description": "Header API Key wajib untuk mutasi data (POST/PUT/PATCH/DELETE)"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/produk/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "produk",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1",
+                  "description": "ID produk"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Madu Murni Kanzul Ulum 500ml (Kemasan Baru)\",\n  \"kategori\": \"herbal\",\n  \"tags\": \"madu,herbal,kesehatan\",\n  \"headline\": \"Madu murni alami dalam kemasan higienis\",\n  \"cover\": \"madu-500ml-new.jpg\",\n  \"content\": \"Madu murni alami dengan botol tersegel rapi.\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Delete Produk",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text",
+                "description": "Header API Key wajib untuk mutasi data (POST/PUT/PATCH/DELETE)"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/produk/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "produk",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1",
+                  "description": "ID produk"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "03. Banner",
+      "item": [
+        {
+          "name": "Get All Banner",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/banner",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "banner"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Banner with Pagination",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/banner/pager?page=1&limit=10",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "banner",
+                "pager"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Banner by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/banner/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "banner",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Banner by Slug",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/banner/slug/:slug",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "banner",
+                "slug",
+                ":slug"
+              ],
+              "variable": [
+                {
+                  "key": "slug",
+                  "value": "kontak",
+                  "description": "Slug halaman banner"
+                }
+              ]
+            },
+            "description": "Mendapatkan banner berdasarkan slug halaman (misal: kontak, galery, pendaftaran)"
+          }
+        },
+        {
+          "name": "Create Banner",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text",
+                "description": "Header API Key wajib untuk mutasi data (POST/PUT/PATCH/DELETE)"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/banner",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "banner"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Pendaftaran Santri Baru Kanzul Ulum\",\n  \"slug\": \"pendaftaran\",\n  \"image\": \"pendaftaran-banner.jpg\",\n  \"imageUrl\": \"https://example.com/images/pendaftaran-banner.jpg\",\n  \"page\": \"pendaftaran\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Update Banner",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text",
+                "description": "Header API Key wajib untuk mutasi data (POST/PUT/PATCH/DELETE)"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/banner/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "banner",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Pendaftaran Santri Baru Gelombang 2\",\n  \"slug\": \"pendaftaran\",\n  \"image\": \"pendaftaran-banner-g2.jpg\",\n  \"imageUrl\": \"https://example.com/images/pendaftaran-banner-g2.jpg\",\n  \"page\": \"pendaftaran\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Delete Banner",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text",
+                "description": "Header API Key wajib untuk mutasi data (POST/PUT/PATCH/DELETE)"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/banner/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "banner",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "04. Galery",
+      "item": [
+        {
+          "name": "Get All Galery",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/galery",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "galery"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Galery with Pagination",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/galery/pager?page=1&limit=10",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "galery",
+                "pager"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Galery by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/galery/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "galery",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Galery by Slug",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/galery/slug/:slug",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "galery",
+                "slug",
+                ":slug"
+              ],
+              "variable": [
+                {
+                  "key": "slug",
+                  "value": "kegiatan-santri"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Galery",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text",
+                "description": "Header API Key wajib untuk mutasi data (POST/PUT/PATCH/DELETE)"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/galery",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "galery"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Dokumentasi Kajian Kitab Kuning\",\n  \"slug\": \"kajian-kitab-kuning\",\n  \"description\": \"Kajian rutin santri setiap bakda Subuh\",\n  \"image\": \"kajian-kitab.jpg\",\n  \"imageUrl\": \"https://example.com/images/kajian-kitab.jpg\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Update Galery",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text",
+                "description": "Header API Key wajib untuk mutasi data (POST/PUT/PATCH/DELETE)"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/galery/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "galery",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Dokumentasi Kajian Rutin Santri\",\n  \"slug\": \"kajian-kitab-kuning\",\n  \"description\": \"Kajian santri putra dan putri\",\n  \"image\": \"kajian-kitab-update.jpg\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Delete Galery",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text",
+                "description": "Header API Key wajib untuk mutasi data (POST/PUT/PATCH/DELETE)"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/galery/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "galery",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "05. Hero",
+      "item": [
+        {
+          "name": "Get All Hero",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/hero",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "hero"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Hero with Pagination",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/hero/pager?page=1&limit=10",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "hero",
+                "pager"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Hero by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/hero/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "hero",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Hero by Slug",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/hero/slug/:slug",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "hero",
+                "slug",
+                ":slug"
+              ],
+              "variable": [
+                {
+                  "key": "slug",
+                  "value": "home"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Hero",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text",
+                "description": "Header API Key wajib untuk mutasi data (POST/PUT/PATCH/DELETE)"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/hero",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "hero"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"slug\": \"home\",\n  \"title\": [\n    {\n      \"id\": \"1\",\n      \"type\": \"text\",\n      \"data\": {\n        \"text\": \"Selamat Datang di Pondok Pesantren Kanzul Ulum\"\n      }\n    }\n  ],\n  \"description\": [\n    {\n      \"id\": \"2\",\n      \"type\": \"text\",\n      \"data\": {\n        \"text\": \"Membina Generasi Qurani, Berakhlakul Karimah dan Berwawasan Global\"\n      }\n    }\n  ],\n  \"image\": \"hero-home.jpg\",\n  \"imageUrl\": \"https://example.com/images/hero-home.jpg\",\n  \"linkText\": \"Daftar Sekarang\",\n  \"link\": \"/pendaftaran\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Update Hero",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text",
+                "description": "Header API Key wajib untuk mutasi data (POST/PUT/PATCH/DELETE)"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/hero/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "hero",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"slug\": \"home\",\n  \"title\": [\n    {\n      \"id\": \"1\",\n      \"type\": \"text\",\n      \"data\": {\n        \"text\": \"Pondok Pesantren Kanzul Ulum Cirebon\"\n      }\n    }\n  ],\n  \"description\": [\n    {\n      \"id\": \"2\",\n      \"type\": \"text\",\n      \"data\": {\n        \"text\": \"Pendidikan Agama Islam Terpadu dan Berkarakter\"\n      }\n    }\n  ],\n  \"image\": \"hero-home.jpg\",\n  \"linkText\": \"Pelajari Lebih Lanjut\",\n  \"link\": \"/profile\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Delete Hero",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text",
+                "description": "Header API Key wajib untuk mutasi data (POST/PUT/PATCH/DELETE)"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/hero/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "hero",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "06. Kegiatan",
+      "item": [
+        {
+          "name": "Get All Kegiatan",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/kegiatan",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "kegiatan"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Kegiatan with Pagination",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/kegiatan/pager?page=1&limit=10",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "kegiatan",
+                "pager"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Kegiatan by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/kegiatan/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "kegiatan",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Kegiatan",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text",
+                "description": "Header API Key wajib untuk mutasi data (POST/PUT/PATCH/DELETE)"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/kegiatan",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "kegiatan"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"waktu\": \"04:30 - 06:00 WIB\",\n  \"kegiatan\": \"Shalat Subuh Berjamaah & Kajian Al-Quran\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Update Kegiatan",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text",
+                "description": "Header API Key wajib untuk mutasi data (POST/PUT/PATCH/DELETE)"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/kegiatan/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "kegiatan",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"waktu\": \"04:30 - 06:30 WIB\",\n  \"kegiatan\": \"Shalat Subuh Berjamaah & Tahfidz Quran\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Delete Kegiatan",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text",
+                "description": "Header API Key wajib untuk mutasi data (POST/PUT/PATCH/DELETE)"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/kegiatan/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "kegiatan",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "07. Lembaga",
+      "item": [
+        {
+          "name": "Get All Lembaga",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/lembaga",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "lembaga"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Lembaga with Pagination",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/lembaga/pager?page=1&limit=10",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "lembaga",
+                "pager"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Lembaga by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/lembaga/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "lembaga",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Lembaga",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text",
+                "description": "Header API Key wajib untuk mutasi data (POST/PUT/PATCH/DELETE)"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/lembaga",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "lembaga"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Madrasah Tsanawiyah (MTs) Kanzul Ulum\",\n  \"image\": \"mts-kanzul-ulum.jpg\",\n  \"imageUrl\": \"https://example.com/images/mts.jpg\",\n  \"description\": \"Jenjang pendidikan formal menengah pertama yang memadukan kurikulum Kemenag dan kurikulum pesantren.\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Update Lembaga",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text",
+                "description": "Header API Key wajib untuk mutasi data (POST/PUT/PATCH/DELETE)"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/lembaga/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "lembaga",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Madrasah Tsanawiyah Terpadu Kanzul Ulum\",\n  \"image\": \"mts-kanzul-ulum.jpg\",\n  \"description\": \"Pendidikan tingkat MTs dengan akreditasi A dan kurikulum unggulan.\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Delete Lembaga",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text",
+                "description": "Header API Key wajib untuk mutasi data (POST/PUT/PATCH/DELETE)"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/lembaga/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "lembaga",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "08. Company & Kontak",
+      "item": [
+        {
+          "name": "Get All Company",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/company",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "company"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Company with Pagination",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/company/pager?page=1&limit=10",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "company",
+                "pager"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Company by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/company/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "company",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Company",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text",
+                "description": "Header API Key wajib untuk mutasi data (POST/PUT/PATCH/DELETE)"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/company",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "company"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Pondok Pesantren Kanzul Ulum Cirebon\",\n  \"shortAddress\": \"Cirebon, Jawa Barat\",\n  \"address\": \"Jl. Pesantren No. 12, Cirebon, Jawa Barat 45153\",\n  \"whatsapp\": \"081234567890\",\n  \"phone\": \"0231-123456\",\n  \"email\": \"info@ponpeskanzululumcirebon.com\",\n  \"googleMapEmbedUrl\": \"https://maps.google.com/embed?pb=...\",\n  \"googleMapUrl\": \"https://maps.app.goo.gl/...\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Update Company",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text",
+                "description": "Header API Key wajib untuk mutasi data (POST/PUT/PATCH/DELETE)"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/company/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "company",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Pondok Pesantren Kanzul Ulum\",\n  \"shortAddress\": \"Cirebon, Jawa Barat\",\n  \"address\": \"Jl. Pesantren No. 12, Cirebon, Jawa Barat\",\n  \"whatsapp\": \"081234567890\",\n  \"phone\": \"0231-123456\",\n  \"email\": \"kontak@ponpeskanzululumcirebon.com\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Delete Company",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text",
+                "description": "Header API Key wajib untuk mutasi data (POST/PUT/PATCH/DELETE)"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/company/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "company",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get All Contact Person",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/contact-person",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "contact-person"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Contact Person with Pagination",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/contact-person/pager?page=1&limit=10",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "contact-person",
+                "pager"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Contact Person by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/contact-person/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "contact-person",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Contact Person",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text",
+                "description": "Header API Key wajib untuk mutasi data (POST/PUT/PATCH/DELETE)"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/contact-person",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "contact-person"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Ust. Ahmad Syafi'i (Humas)\",\n  \"phone\": \"+628123456789\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Update Contact Person",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text",
+                "description": "Header API Key wajib untuk mutasi data (POST/PUT/PATCH/DELETE)"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/contact-person/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "contact-person",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Ust. Ahmad Syafi'i (Sekretariat)\",\n  \"phone\": \"+628123456789\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Delete Contact Person",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text",
+                "description": "Header API Key wajib untuk mutasi data (POST/PUT/PATCH/DELETE)"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/contact-person/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "contact-person",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "09. Pendaftaran",
+      "item": [
+        {
+          "name": "Get All Syarat Pendaftaran",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/syarat-pendaftaran",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "syarat-pendaftaran"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Syarat Pendaftaran with Pagination",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/syarat-pendaftaran/pager?page=1&limit=10",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "syarat-pendaftaran",
+                "pager"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Syarat Pendaftaran by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/syarat-pendaftaran/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "syarat-pendaftaran",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Syarat Pendaftaran",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text",
+                "description": "Header API Key wajib untuk mutasi data (POST/PUT/PATCH/DELETE)"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/syarat-pendaftaran",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "syarat-pendaftaran"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"categorySlug\": \"santri-baru\",\n  \"content\": \"Mengisi formulir pendaftaran serta melampirkan fotokopi Kartu Keluarga dan Akta Kelahiran.\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Update Syarat Pendaftaran",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text",
+                "description": "Header API Key wajib untuk mutasi data (POST/PUT/PATCH/DELETE)"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/syarat-pendaftaran/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "syarat-pendaftaran",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"categorySlug\": \"santri-baru\",\n  \"content\": \"Mengisi formulir pendaftaran online dan menyerahkan dokumen fisik ke sekretariat.\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Delete Syarat Pendaftaran",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text",
+                "description": "Header API Key wajib untuk mutasi data (POST/PUT/PATCH/DELETE)"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/syarat-pendaftaran/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "syarat-pendaftaran",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get All Biaya Pendaftaran",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/biaya-pendaftaran",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "biaya-pendaftaran"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Biaya Pendaftaran with Pagination",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/biaya-pendaftaran/pager?page=1&limit=10",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "biaya-pendaftaran",
+                "pager"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Biaya Pendaftaran by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/biaya-pendaftaran/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "biaya-pendaftaran",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Biaya Pendaftaran",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text",
+                "description": "Header API Key wajib untuk mutasi data (POST/PUT/PATCH/DELETE)"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/biaya-pendaftaran",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "biaya-pendaftaran"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"categorySlug\": \"santri-baru\",\n  \"legend\": \"Uang Pendaftaran & Infaq Gedung\",\n  \"keterangan\": \"Dibayarkan sekali saat calon santri dinyatakan diterima\",\n  \"biaya\": \"Rp 1.500.000\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Update Biaya Pendaftaran",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text",
+                "description": "Header API Key wajib untuk mutasi data (POST/PUT/PATCH/DELETE)"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/biaya-pendaftaran/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "biaya-pendaftaran",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"categorySlug\": \"santri-baru\",\n  \"legend\": \"Uang Pendaftaran & Infaq Gedung\",\n  \"keterangan\": \"Dapat diangsur maksimal 3 kali\",\n  \"biaya\": \"Rp 1.500.000\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Delete Biaya Pendaftaran",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text",
+                "description": "Header API Key wajib untuk mutasi data (POST/PUT/PATCH/DELETE)"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/biaya-pendaftaran/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "biaya-pendaftaran",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "10. Profile",
+      "item": [
+        {
+          "name": "Get All Profile",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/profile",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "profile"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Profile with Pagination",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/profile/pager?page=1&limit=10",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "profile",
+                "pager"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Profile by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/profile/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "profile",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Profile",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text",
+                "description": "Header API Key wajib untuk mutasi data (POST/PUT/PATCH/DELETE)"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/profile",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "profile"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"heading\": \"Visi & Misi\",\n  \"title\": \"Membina Generasi Rabbani Berakhlak Al-Qur'an\",\n  \"image\": \"visi-misi.jpg\",\n  \"imageUrl\": \"https://example.com/images/visi-misi.jpg\",\n  \"kind\": \"visi-misi\",\n  \"contents\": [\n    {\n      \"id\": \"1\",\n      \"type\": \"paragraph\",\n      \"data\": {\n        \"text\": \"Menjadi pondok pesantren rujukan dalam pembinaan adab dan ilmu kepesantrenan.\"\n      }\n    }\n  ],\n  \"linkText\": \"Baca Selengkapnya\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Update Profile",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text",
+                "description": "Header API Key wajib untuk mutasi data (POST/PUT/PATCH/DELETE)"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/profile/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "profile",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"heading\": \"Visi & Misi Pesantren\",\n  \"title\": \"Membina Generasi Rabbani Berakhlak Al-Qur'an\",\n  \"image\": \"visi-misi.jpg\",\n  \"kind\": \"visi-misi\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Delete Profile",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text",
+                "description": "Header API Key wajib untuk mutasi data (POST/PUT/PATCH/DELETE)"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/profile/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "profile",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "11. Template",
+      "item": [
+        {
+          "name": "Get All Template",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/template",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "template"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Template by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/template/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "template",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "12. Navigasi & Media Sosial",
+      "item": [
+        {
+          "name": "Get Social Network Links",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/social-network-links",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "social-network-links"
+              ]
+            },
+            "description": "Mendapatkan tautan sosial media pondok (Facebook, Instagram, YouTube, TikTok, dll.)"
+          }
+        },
+        {
+          "name": "Get Web Navigation",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/web-navigation",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "web-navigation"
+              ]
+            },
+            "description": "Mendapatkan struktur menu dan navigasi website ponpes"
+          }
+        }
+      ]
+    },
+    {
+      "name": "13. File Upload",
+      "item": [
+        {
+          "name": "List Files",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/files",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "files"
+              ]
+            },
+            "description": "Mendapatkan daftar file yang telah tersimpan di KV"
+          }
+        },
+        {
+          "name": "Get File by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/files/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "files",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "sample-file-id",
+                  "description": "ID file (misal key file)"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Upload File (Base64)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text",
+                "description": "Header API Key wajib untuk mutasi data (POST/PUT/PATCH/DELETE)"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/files",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "files"
+              ]
+            },
+            "description": "Mengunggah file (payload JSON dengan base64 content)",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"filename\": \"brosur-pendaftaran.pdf\",\n  \"content\": \"JVBERi0xLjQKJcTl8uXrCg==\",\n  \"contentType\": \"application/pdf\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Delete File",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text",
+                "description": "Header API Key wajib untuk mutasi data (POST/PUT/PATCH/DELETE)"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/files/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "files",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "sample-file-id",
+                  "description": "ID file yang akan dihapus"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

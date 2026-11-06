@@ -6,8 +6,10 @@ import { BannerController } from "../controllers/bannerController"
 import { getAllBannerHandler } from "../handlers/banner/getAllBannerHandler"
 import { getBannerWithPagerHandler } from "../handlers/banner/getBannerWithPagerHandler"
 import { getBannerByIdHandler } from "../handlers/banner/getBannerByIdHandler"
+import { getBannerBySlugHandler } from "../handlers/banner/getBannerBySlugHandler"
 import { createBannerHandler } from "../handlers/banner/createBannerHandler"
 import { updateBannerHandler } from "../handlers/banner/updateBannerHandler"
+import { updateBannerBySlugHandler } from "../handlers/banner/updateBannerBySlugHandler"
 import { deleteBannerHandler } from "../handlers/banner/deleteBannerHandler"
 import { bannerValidator } from "../handlers/banner/validator"
 
@@ -19,9 +21,12 @@ bannerRoutes.get("/banner", getAllBannerHandler)
 
 // GET /api/banner/pager - Mendapatkan banner dengan pagination
 bannerRoutes.get("/banner/pager", getBannerWithPagerHandler)
-
+// GET /api/banner/slug/:slug - Mendapatkan banner berdasarkan slug
+bannerRoutes.get("/banner/slug/:slug", getBannerBySlugHandler)
 // GET /api/banner/:id - Mendapatkan banner berdasarkan ID
 bannerRoutes.get("/banner/:id", getBannerByIdHandler)
+
+
 
 // POST /api/banner - Membuat banner baru
 bannerRoutes.post(
@@ -35,6 +40,13 @@ bannerRoutes.put(
   "/banner/:id",
   validator("json", bannerValidator),
   updateBannerHandler
+)
+
+// POST /api/banner/slug/:slug - Memperbarui banner berdasarkan slug
+bannerRoutes.post(
+  "/banner/slug/:slug",
+  validator("json", bannerValidator),
+  updateBannerBySlugHandler
 )
 //
 // DELETE /api/banner/:id - Menghapus banner

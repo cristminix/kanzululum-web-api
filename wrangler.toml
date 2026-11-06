@@ -3,9 +3,13 @@ main = "src/index.ts"
 compatibility_date = "2023-12-01"
 compatibility_flags = [ "nodejs_compat" ]
 
+[dev]
+port = 8787
+
 [vars]
 KV_STORE="KV"
 JWT_SECRET = "kosong-adalah-berisi-berisi-adalah-kosong"
+# API_KEY is read from .dev.vars locally and from `wrangler secret` in production.
 JWT_FINGERPRINT_COOKIE_NAME="__Secure-Fgp"
 JWT_FINGERPRINT_REFRESH_COOKIE_NAME="__Secure-Fgp-Refresh"
 

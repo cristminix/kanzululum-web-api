@@ -10,4 +10,5 @@ export type Env = {
   REFRESH_TOKEN_EXPIRATION: number
   TOKEN_EXPIRATION: number
   KV: KVNamespace
+  API_KEY: string
 }

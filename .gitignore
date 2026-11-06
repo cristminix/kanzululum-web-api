@@ -5,6 +5,7 @@ node_modules/
 .env
 .env.local
 .env.*.local
+.dev.vars
 
 # Build output
 dist/
@@ -26,6 +27,7 @@ Thumbs.db
 *.js
 *.d.ts
 tsconfig.tsbuildinfo
+!postman/generate.js
 
 # Cloudflare Wrangler
 .wrangler/

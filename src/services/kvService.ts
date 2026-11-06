@@ -170,6 +170,18 @@ export class KVService {
     await this.delete(`banner_${id}`)
   }
 
+  async getAllBanner(): Promise<any[]> {
+    const keys = await this.getAllBannerKeys()
+    const banners: any[] = []
+    for (const id of keys) {
+      const bannerStr = await this.getBannerById(id)
+      if (bannerStr) {
+        banners.push(JSON.parse(bannerStr))
+      }
+    }
+    return banners
+  }
+
   // Operasi khusus untuk galery
   async getAllGaleryKeys(): Promise<number[]> {
     const galeryKeys = await this.get("galery_keys")

@@ -17,9 +17,11 @@ import { profileRoutes } from "./routes/profileRoutes"
 import { socialNetworkLinksRoutes } from "./routes/socialNetworkLinksRoutes"
 import { webNavigationRoutes } from "./routes/webNavigationRoutes"
 import { fileUploadRoutes } from "./routes/fileUploadRoutes"
+import { requireApiKey } from "./middlewares/requireApiKey"
+import { Env } from "./types/Env"
 
 // Inisialisasi aplikasi Hono
-const app = new Hono<{ Bindings: { KV: KVNamespace } }>()
+const app = new Hono<{ Bindings: Env }>()
 
 // Middleware CORS
 app.use("*", cors())
@@ -29,6 +31,9 @@ app.use("*", async (c, next) => {
   console.log(`${c.req.method} ${c.req.url}`)
   await next()
 })
+
+// POST, PUT, PATCH, dan DELETE di /api wajib membawa X-Api-Key
+app.use("/api/*", requireApiKey)
 
 // Route untuk halaman utama
 app.get("/", (c) => {
