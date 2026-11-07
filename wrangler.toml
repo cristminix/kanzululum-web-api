@@ -29,4 +29,4 @@ id = "04d0e33bf17247628c22f96b93bc0362"
 [[d1_databases]]
 binding = "DB"
 database_name = "kanzululumdb"
-database_id = "placeholder-for-local-dev"
+database_id = "f2e79ed3-f652-4823-9999-e90c097c499c"
