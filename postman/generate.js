@@ -590,6 +590,60 @@ const collection = {
           pathVars: [{ key: "id", value: "sample-file-id", description: "ID file yang akan dihapus" }]
         })
       ]
+    },
+    {
+      name: "14. Welcome Message",
+      item: [
+        createRequest("Get All Welcome Message", "GET", "/api/welcome-message", {
+          description: "Mendapatkan semua data welcome message"
+        }),
+        createRequest("Get Welcome Message with Pagination", "GET", "/api/welcome-message/pager", {
+          description: "Mendapatkan welcome message dengan pagination",
+          query: [
+            { key: "page", value: "1" },
+            { key: "limit", value: "10" }
+          ]
+        }),
+        createRequest("Get Welcome Message by ID", "GET", "/api/welcome-message/:id", {
+          description: "Mendapatkan welcome message berdasarkan ID",
+          pathVars: [{ key: "id", value: "1" }]
+        }),
+        createRequest("Create Welcome Message", "POST", "/api/welcome-message", {
+          description: "Membuat data welcome message baru",
+          body: {
+            title: "Selamat Datang di Pondok Pesantren Kanzululum Cirebon",
+            content: [
+              {
+                id: "42EhpkWXEQ",
+                type: "paragraph",
+                data: {
+                  text: "Kami berkomitmen untuk memberikan pendidikan Al-Quran yang berkualitas, mengembangkan sektor pertanian, perkebunan, dan peternakan, serta menyediakan pengajaran holistik yang menggabungkan pendidikan agama dan umum. Selamat bergabung dengan kami dalam mencapai tujuan mulia kami."
+                }
+              }
+            ]
+          }
+        }),
+        createRequest("Update Welcome Message", "PUT", "/api/welcome-message/:id", {
+          description: "Memperbarui data welcome message berdasarkan ID",
+          pathVars: [{ key: "id", value: "1" }],
+          body: {
+            title: "Selamat Datang di Pondok Pesantren Kanzululum Cirebon",
+            content: [
+              {
+                id: "42EhpkWXEQ",
+                type: "paragraph",
+                data: {
+                  text: "Kami berkomitmen untuk memberikan pendidikan Al-Quran yang berkualitas, mengembangkan sektor pertanian, perkebunan, dan peternakan, serta menyediakan pengajaran holistik yang menggabungkan pendidikan agama dan umum. Selamat bergabung dengan kami dalam mencapai tujuan mulia kami."
+                }
+              }
+            ]
+          }
+        }),
+        createRequest("Delete Welcome Message", "DELETE", "/api/welcome-message/:id", {
+          description: "Menghapus welcome message berdasarkan ID",
+          pathVars: [{ key: "id", value: "1" }]
+        })
+      ]
     }
   ]
 };

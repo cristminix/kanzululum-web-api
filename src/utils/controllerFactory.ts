@@ -17,6 +17,7 @@ import { SocialNetworkLinksController } from "../controllers/socialNetworkLinksC
 import { WebNavigationController } from "../controllers/webNavigationController"
 import { FileUploadController } from "../controllers/fileUploadController"
 import { PageController } from "../controllers/pageController"
+import { WelcomeMessageController } from "../controllers/welcomeMessageController"
 
 // Factory function untuk membuat controller
 export const createBeritaController = (kv: KVNamespace) => {
@@ -101,4 +102,9 @@ export const createFileUploadController = (kv: KVNamespace) => {
 export const createPageController = (kv: KVNamespace) => {
   const kvService = new KVService(kv)
   return new PageController(kvService)
+}
+
+export const createWelcomeMessageController = (kv: KVNamespace) => {
+  const kvService = new KVService(kv)
+  return new WelcomeMessageController(kvService)
 }
