@@ -6,20 +6,23 @@
  *   npx tsx fixtures/insert-profile.ts [options]
  *
  * Options:
- *   --url <url>    API base URL (default: http://localhost:8787)
- *   --limit <n>    Limit number of items to insert (default: all)
- *   --delay <ms>   Delay between requests in ms (default: 100)
+ *   --url <url>        API base URL (default: http://localhost:8787)
+ *   --api-key <key>    API key for X-Api-Key header (default: from .dev.vars or .env)
+ *   --limit <n>        Limit number of items to insert (default: all)
+ *   --delay <ms>       Delay between requests in ms (default: 100)
  */
 
 import fs from 'fs'
 import path from 'path'
 import dotenv from 'dotenv'
 
-// Load environment variables
-dotenv.config()
+// Load environment variables (.dev.vars first for wrangler dev, then .env)
+dotenv.config({ path: path.resolve(__dirname, '..', '.dev.vars') })
+dotenv.config({ path: path.resolve(__dirname, '..', '.env') })
 
 // Configuration
 const DEFAULT_URL = process.env.VITE_API_BASE_URL || 'http://localhost:8787'
+const DEFAULT_API_KEY = process.env.API_KEY || ''
 const DEFAULT_DELAY = 100
 const IMAGES_DIR = path.join(__dirname, 'images', 'profile')
 
@@ -52,7 +55,9 @@ interface CreateProfilePayload {
 }
 
 interface CreateProfileResponse {
-  id: number
+  id?: number
+  profile?: ProfileItem
+  message?: string
   [key: string]: unknown
 }
 
@@ -89,9 +94,26 @@ function extractFilename(imagePath: string): string {
 }
 
 /**
+ * Build request headers including X-Api-Key when available
+ */
+function buildHeaders(apiKey: string): Record<string, string> {
+  const headers: Record<string, string> = {
+    'Content-Type': 'application/json',
+  }
+  if (apiKey) {
+    headers['X-Api-Key'] = apiKey
+  }
+  return headers
+}
+
+/**
  * Upload a file to the API and return the fileId
  */
-async function uploadFile(baseUrl: string, imagePath: string): Promise<string | null> {
+async function uploadFile(
+  baseUrl: string,
+  apiKey: string,
+  imagePath: string
+): Promise<string | null> {
   // Extract filename from path
   const filename = extractFilename(imagePath)
 
@@ -114,9 +136,7 @@ async function uploadFile(baseUrl: string, imagePath: string): Promise<string | 
 
     const response = await fetch(`${baseUrl}/api/files`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers: buildHeaders(apiKey),
       body: JSON.stringify({
         filename,
         content: base64Content,
@@ -146,7 +166,12 @@ async function uploadFile(baseUrl: string, imagePath: string): Promise<string | 
   }
 }
 
-async function insertProfile(baseUrl: string, limit: number | null, delay: number): Promise<void> {
+async function insertProfile(
+  baseUrl: string,
+  apiKey: string,
+  limit: number | null,
+  delay: number
+): Promise<void> {
   // Read fixtures file
   const fixturesPath = path.join(__dirname, 'profile.json')
 
@@ -173,12 +198,12 @@ async function insertProfile(baseUrl: string, limit: number | null, delay: numbe
     const itemNum = i + 1
 
     try {
-      console.log(`[${itemNum}/${itemsToInsert.length}] Inserting: ${item.heading} - ${item.title}...`)
+      console.log(`[${itemNum}/${itemsToInsert.length}] Inserting: ${item.heading} - ${item.title} (${item.kind})...`)
 
       // Upload profile image if exists
       let imageId: string | undefined
       if (item.image) {
-        const uploadedId = await uploadFile(baseUrl, item.image)
+        const uploadedId = await uploadFile(baseUrl, apiKey, item.image)
         imageId = uploadedId || undefined
       }
 
@@ -194,9 +219,7 @@ async function insertProfile(baseUrl: string, limit: number | null, delay: numbe
 
       const response = await fetch(`${baseUrl}/api/profile`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: buildHeaders(apiKey),
         body: JSON.stringify(payload),
       })
 
@@ -206,7 +229,8 @@ async function insertProfile(baseUrl: string, limit: number | null, delay: numbe
       }
 
       const result: CreateProfileResponse = await response.json()
-      console.log(`  ✓ Success (ID: ${result.id})`)
+      const createdId = result.profile?.id ?? result.id
+      console.log(`  ✓ Success (ID: ${createdId})`)
       successCount++
 
       // Delay between requests
@@ -227,15 +251,24 @@ async function insertProfile(baseUrl: string, limit: number | null, delay: numbe
 }
 
 // Parse command line arguments
-function parseArgs(): { baseUrl: string; limit: number | null; delay: number } {
+function parseArgs(): {
+  baseUrl: string
+  apiKey: string
+  limit: number | null
+  delay: number
+} {
   const args = process.argv.slice(2)
   let baseUrl = DEFAULT_URL
+  let apiKey = DEFAULT_API_KEY
   let limit: number | null = null
   let delay = DEFAULT_DELAY
 
   for (let i = 0; i < args.length; i++) {
     if (args[i] === '--url' && args[i + 1]) {
       baseUrl = args[i + 1]
+      i++
+    } else if (args[i] === '--api-key' && args[i + 1]) {
+      apiKey = args[i + 1]
       i++
     } else if (args[i] === '--limit' && args[i + 1]) {
       limit = parseInt(args[i + 1], 10)
@@ -246,11 +279,11 @@ function parseArgs(): { baseUrl: string; limit: number | null; delay: number } {
     }
   }
 
-  return { baseUrl, limit, delay }
+  return { baseUrl, apiKey, limit, delay }
 }
 
 // Main execution
-const { baseUrl, limit, delay } = parseArgs()
+const { baseUrl, apiKey, limit, delay } = parseArgs()
 
 console.log('=== Profile Insertion Script ===')
 console.log(`API URL: ${baseUrl}`)
@@ -259,7 +292,7 @@ console.log(`Delay: ${delay}ms`)
 if (limit) console.log(`Limit: ${limit} items`)
 console.log('')
 
-insertProfile(baseUrl, limit, delay).catch(error => {
+insertProfile(baseUrl, apiKey, limit, delay).catch(error => {
   console.error('Fatal error:', error)
   process.exit(1)
 })
