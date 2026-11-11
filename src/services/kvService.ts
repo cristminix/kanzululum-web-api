@@ -401,4 +401,26 @@ export class KVService {
   async deletePage(id: number): Promise<void> {
     await this.delete(`page_${id}`)
   }
+
+  // Operasi khusus untuk welcome message
+  async getAllWelcomeMessageKeys(): Promise<number[]> {
+    const welcomeMessageKeys = await this.get("welcome_message_keys")
+    return welcomeMessageKeys ? JSON.parse(welcomeMessageKeys) : []
+  }
+
+  async saveWelcomeMessageKeys(keys: number[]): Promise<void> {
+    await this.put("welcome_message_keys", JSON.stringify(keys))
+  }
+
+  async getWelcomeMessageById(id: number): Promise<string | null> {
+    return await this.get(`welcome_message_${id}`)
+  }
+
+  async saveWelcomeMessageById(id: number, welcomeMessageStr: string): Promise<void> {
+    await this.put(`welcome_message_${id}`, welcomeMessageStr)
+  }
+
+  async deleteWelcomeMessageById(id: number): Promise<void> {
+    await this.delete(`welcome_message_${id}`)
+  }
 }

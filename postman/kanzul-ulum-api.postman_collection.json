@@ -2622,6 +2622,200 @@
           }
         }
       ]
+    },
+    {
+      "name": "14. Welcome Message",
+      "item": [
+        {
+          "name": "Get All Welcome Message",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/welcome-message",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "welcome-message"
+              ]
+            },
+            "description": "Mendapatkan semua data welcome message"
+          }
+        },
+        {
+          "name": "Get Welcome Message with Pagination",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/welcome-message/pager?page=1&limit=10",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "welcome-message",
+                "pager"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            },
+            "description": "Mendapatkan welcome message dengan pagination"
+          }
+        },
+        {
+          "name": "Get Welcome Message by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/welcome-message/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "welcome-message",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            },
+            "description": "Mendapatkan welcome message berdasarkan ID"
+          }
+        },
+        {
+          "name": "Create Welcome Message",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text",
+                "description": "Header API Key wajib untuk mutasi data (POST/PUT/PATCH/DELETE)"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/welcome-message",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "welcome-message"
+              ]
+            },
+            "description": "Membuat data welcome message baru",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Selamat Datang di Pondok Pesantren Kanzululum Cirebon\",\n  \"content\": [\n    {\n      \"id\": \"42EhpkWXEQ\",\n      \"type\": \"paragraph\",\n      \"data\": {\n        \"text\": \"Kami berkomitmen untuk memberikan pendidikan Al-Quran yang berkualitas, mengembangkan sektor pertanian, perkebunan, dan peternakan, serta menyediakan pengajaran holistik yang menggabungkan pendidikan agama dan umum. Selamat bergabung dengan kami dalam mencapai tujuan mulia kami.\"\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Update Welcome Message",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text",
+                "description": "Header API Key wajib untuk mutasi data (POST/PUT/PATCH/DELETE)"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/welcome-message/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "welcome-message",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            },
+            "description": "Memperbarui data welcome message berdasarkan ID",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Selamat Datang di Pondok Pesantren Kanzululum Cirebon\",\n  \"content\": [\n    {\n      \"id\": \"42EhpkWXEQ\",\n      \"type\": \"paragraph\",\n      \"data\": {\n        \"text\": \"Kami berkomitmen untuk memberikan pendidikan Al-Quran yang berkualitas, mengembangkan sektor pertanian, perkebunan, dan peternakan, serta menyediakan pengajaran holistik yang menggabungkan pendidikan agama dan umum. Selamat bergabung dengan kami dalam mencapai tujuan mulia kami.\"\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Delete Welcome Message",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text",
+                "description": "Header API Key wajib untuk mutasi data (POST/PUT/PATCH/DELETE)"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/welcome-message/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "welcome-message",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            },
+            "description": "Menghapus welcome message berdasarkan ID"
+          }
+        }
+      ]
     }
   ]
 }

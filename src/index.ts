@@ -17,6 +17,7 @@ import { profileRoutes } from "./routes/profileRoutes"
 import { socialNetworkLinksRoutes } from "./routes/socialNetworkLinksRoutes"
 import { webNavigationRoutes } from "./routes/webNavigationRoutes"
 import { fileUploadRoutes } from "./routes/fileUploadRoutes"
+import { welcomeMessageRoutes } from "./routes/welcomeMessageRoutes"
 import { requireApiKey } from "./middlewares/requireApiKey"
 import { Env } from "./types/Env"
 
@@ -66,6 +67,7 @@ app.route("/api", profileRoutes)
 app.route("/api", socialNetworkLinksRoutes)
 app.route("/api", webNavigationRoutes)
 app.route("/api", fileUploadRoutes)
+app.route("/api", welcomeMessageRoutes)
 
 // Error handling middleware
 app.onError((err, c) => {
