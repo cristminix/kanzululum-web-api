@@ -17,8 +17,7 @@ templateRoutes.get("/template", getAllTemplateHandler)
 
 // GET /api/template/:id - Mendapatkan template berdasarkan ID
 templateRoutes.get("/template/:id", getTemplateByIdHandler)
-
-/*
+ 
 // POST /api/template - Membuat template baru
 templateRoutes.post(
   "/template",
@@ -35,4 +34,4 @@ templateRoutes.put(
 
 // DELETE /api/template/:id - Menghapus template
 templateRoutes.delete("/template/:id", deleteTemplateHandler)
-*/
+ 
