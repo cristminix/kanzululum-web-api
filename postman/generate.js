@@ -644,6 +644,46 @@ const collection = {
           pathVars: [{ key: "id", value: "1" }]
         })
       ]
+    },
+    {
+      name: "15. Meta",
+      item: [
+        createRequest("Get All Meta", "GET", "/api/meta", {
+          description: "Mendapatkan semua data meta"
+        }),
+        createRequest("Get Meta with Pagination", "GET", "/api/meta/pager", {
+          description: "Mendapatkan meta dengan pagination",
+          query: [
+            { key: "page", value: "1" },
+            { key: "limit", value: "10" }
+          ]
+        }),
+        createRequest("Get Meta by ID", "GET", "/api/meta/:id", {
+          description: "Mendapatkan meta berdasarkan ID",
+          pathVars: [{ key: "id", value: "1" }]
+        }),
+        createRequest("Create Meta", "POST", "/api/meta", {
+          description: "Membuat data meta baru",
+          body: {
+            title: "Galery Pondok Pesantren Kanzululum",
+            "meta-description": "Galery Pondok Pesantren Kanzululum",
+            "meta-keyword": "galery ponpes kanzul ulum"
+          }
+        }),
+        createRequest("Update Meta", "PUT", "/api/meta/:id", {
+          description: "Memperbarui data meta berdasarkan ID",
+          pathVars: [{ key: "id", value: "1" }],
+          body: {
+            title: "Galery Pondok Pesantren Kanzululum",
+            "meta-description": "Galery Pondok Pesantren Kanzululum",
+            "meta-keyword": "galery ponpes kanzul ulum"
+          }
+        }),
+        createRequest("Delete Meta", "DELETE", "/api/meta/:id", {
+          description: "Menghapus meta berdasarkan ID",
+          pathVars: [{ key: "id", value: "1" }]
+        })
+      ]
     }
   ]
 };

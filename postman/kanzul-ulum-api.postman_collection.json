@@ -2816,6 +2816,200 @@
           }
         }
       ]
+    },
+    {
+      "name": "15. Meta",
+      "item": [
+        {
+          "name": "Get All Meta",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/meta",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "meta"
+              ]
+            },
+            "description": "Mendapatkan semua data meta"
+          }
+        },
+        {
+          "name": "Get Meta with Pagination",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/meta/pager?page=1&limit=10",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "meta",
+                "pager"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            },
+            "description": "Mendapatkan meta dengan pagination"
+          }
+        },
+        {
+          "name": "Get Meta by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/meta/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "meta",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            },
+            "description": "Mendapatkan meta berdasarkan ID"
+          }
+        },
+        {
+          "name": "Create Meta",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text",
+                "description": "Header API Key wajib untuk mutasi data (POST/PUT/PATCH/DELETE)"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/meta",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "meta"
+              ]
+            },
+            "description": "Membuat data meta baru",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Galery Pondok Pesantren Kanzululum\",\n  \"meta-description\": \"Galery Pondok Pesantren Kanzululum\",\n  \"meta-keyword\": \"galery ponpes kanzul ulum\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Update Meta",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text",
+                "description": "Header API Key wajib untuk mutasi data (POST/PUT/PATCH/DELETE)"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/meta/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "meta",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            },
+            "description": "Memperbarui data meta berdasarkan ID",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Galery Pondok Pesantren Kanzululum\",\n  \"meta-description\": \"Galery Pondok Pesantren Kanzululum\",\n  \"meta-keyword\": \"galery ponpes kanzul ulum\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Delete Meta",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "X-Api-Key",
+                "value": "{{apiKey}}",
+                "type": "text",
+                "description": "Header API Key wajib untuk mutasi data (POST/PUT/PATCH/DELETE)"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/meta/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "api",
+                "meta",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            },
+            "description": "Menghapus meta berdasarkan ID"
+          }
+        }
+      ]
     }
   ]
 }

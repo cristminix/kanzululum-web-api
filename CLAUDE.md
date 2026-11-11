@@ -99,7 +99,7 @@ All entities follow RESTful pattern with these operations:
 - `PUT /api/{entity}/:id` - Update by ID
 - `DELETE /api/{entity}/:id` - Delete by ID
 
-Available entities: `berita`, `produk`, `banner`, `galery`, `hero`, `kegiatan`, `lembaga`, `page`, `profile`, `template`, `company`, `contact-person`, `syarat-pendaftaran`, `biaya-pendaftaran`, `welcome-message`
+Available entities: `berita`, `produk`, `banner`, `galery`, `hero`, `kegiatan`, `lembaga`, `page`, `profile`, `template`, `company`, `contact-person`, `syarat-pendaftaran`, `biaya-pendaftaran`, `welcome-message`, `meta`
 
 ### Read-Only Entities
 - `GET /api/social-network-links` - Get all social network links

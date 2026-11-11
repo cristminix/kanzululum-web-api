@@ -18,6 +18,7 @@ import { WebNavigationController } from "../controllers/webNavigationController"
 import { FileUploadController } from "../controllers/fileUploadController"
 import { PageController } from "../controllers/pageController"
 import { WelcomeMessageController } from "../controllers/welcomeMessageController"
+import { MetaController } from "../controllers/metaController"
 
 // Factory function untuk membuat controller
 export const createBeritaController = (kv: KVNamespace) => {
@@ -107,4 +108,9 @@ export const createPageController = (kv: KVNamespace) => {
 export const createWelcomeMessageController = (kv: KVNamespace) => {
   const kvService = new KVService(kv)
   return new WelcomeMessageController(kvService)
+}
+
+export const createMetaController = (kv: KVNamespace) => {
+  const kvService = new KVService(kv)
+  return new MetaController(kvService)
 }

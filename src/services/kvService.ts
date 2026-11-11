@@ -423,4 +423,26 @@ export class KVService {
   async deleteWelcomeMessageById(id: number): Promise<void> {
     await this.delete(`welcome_message_${id}`)
   }
+
+  // Operasi khusus untuk meta
+  async getAllMetaKeys(): Promise<number[]> {
+    const metaKeys = await this.get("meta_keys")
+    return metaKeys ? JSON.parse(metaKeys) : []
+  }
+
+  async saveMetaKeys(keys: number[]): Promise<void> {
+    await this.put("meta_keys", JSON.stringify(keys))
+  }
+
+  async getMetaById(id: number): Promise<string | null> {
+    return await this.get(`meta_${id}`)
+  }
+
+  async saveMetaById(id: number, metaStr: string): Promise<void> {
+    await this.put(`meta_${id}`, metaStr)
+  }
+
+  async deleteMetaById(id: number): Promise<void> {
+    await this.delete(`meta_${id}`)
+  }
 }
