@@ -2,6 +2,7 @@ import { Template } from "../models/template"
 import { KVService } from "../services/kvService"
 import { getAllTemplate } from "./template/getAllTemplate"
 import { getTemplateById } from "./template/getTemplateById"
+import { getTemplateByKind } from "./template/getTemplateByKind"
 import { createTemplate } from "./template/createTemplate"
 import { updateTemplate } from "./template/updateTemplate"
 import { deleteTemplate } from "./template/deleteTemplate"
@@ -21,6 +22,11 @@ export class TemplateController {
   // GET /api/template/:id - Mendapatkan template berdasarkan ID
   async getTemplateById(id: number): Promise<Template | null> {
     return getTemplateById(this.kvService, id)
+  }
+
+  // GET /api/template/kind/:kind - Mendapatkan template berdasarkan kind
+  async getTemplateByKind(kind: string): Promise<Template | null> {
+    return getTemplateByKind(this.kvService, kind)
   }
 
   // POST /api/template - Membuat template baru
