@@ -10,7 +10,9 @@ export const getBeritaByIdHandler = async (c: Context) => {
     if (!berita) {
       return c.json({ error: "Berita not found" }, 404)
     }
-
+    if(berita.content){
+      berita.content = JSON.parse(berita.content)
+    }
     return c.json({ berita })
   } catch (error) {
     if (error instanceof Error && error.message === "Invalid ID") {

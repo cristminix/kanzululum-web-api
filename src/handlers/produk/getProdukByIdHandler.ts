@@ -10,7 +10,9 @@ export const getProdukByIdHandler = async (c: Context) => {
 
     const controller = createProdukController(c.env.KV)
     const result = await controller.getProdukById(id)
-    
+     if(result.content){
+      result.content = JSON.parse(result.content)
+    }
     if (!result) {
       return c.json({ error: "Produk not found" }, 404)
     }
