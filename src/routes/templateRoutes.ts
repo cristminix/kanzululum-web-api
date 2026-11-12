@@ -13,9 +13,11 @@ export const templateRoutes = new Hono<{ Bindings: { KV: KVNamespace } }>()
 
 // GET /api/template - Mendapatkan semua template
 templateRoutes.get("/template", getAllTemplateHandler)
+templateRoutes.get("/templates", getAllTemplateHandler)
 
 // GET /api/template/kind/:kind - Mendapatkan template berdasarkan kind
 templateRoutes.get("/template/kind/:kind", getTemplateByKindHandler)
+templateRoutes.get("/templates/kind/:kind", getTemplateByKindHandler)
 
 // GET /api/template/:id - Mendapatkan template berdasarkan ID
 templateRoutes.get("/template/:id", getTemplateByIdHandler)
